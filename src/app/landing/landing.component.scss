@@ -1,0 +1,40 @@
+.edit-icon {
+    cursor: pointer;
+}
+
+.delete-icon {
+    cursor: pointer;
+}
+
+.margin10t {
+    margin-top: 10px;
+}
+.manage-button {
+    float: right;
+    margin-left: 10px;
+}
+.manage-appoint {
+    width: 15%;
+}
+
+.landing-btn{
+    height: 35px
+}
+
+
+.mat-tab-label {
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: transparent;
+    color: green;
+    font-weight: 700;
+}
+
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: transparent;
+    color: green;
+    font-weight: 700;
+}

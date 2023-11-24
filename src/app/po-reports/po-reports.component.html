@@ -1,0 +1,89 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+        <h3>PO INVOICE SUMMARY</h3>
+    </div>
+    <div class="row">
+        <mat-form-field appearance="fill" class="col-lg-3">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate placeholder="Start date" [(ngModel)]="from_date">
+              <input matEndDate placeholder="End date" [max]="today" [(ngModel)]="to_date">
+            </mat-date-range-input>
+            <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+    </div>
+    <div class="row mt-4">
+        <button class="btn btn-success col-lg-2" (click)="getReports()" [disabled]="this.from_date === undefined || this.to_date === undefined"><i class="fa-solid fa-arrows-up-down mar5r"></i>Retrieve</button>
+    
+        <button class="btn btn-success col-lg-2 ms-2" [disabled]="reportData.length === 0"
+          (click)="export2Excel()"><i class="fa-solid fa-file-excel mar5r"></i>Export</button>
+    
+    </div>
+    <br>
+    <div class="row mt-4" *ngIf="reportData?.length === 0">
+      <strong>No Data for given period.</strong>
+    </div>
+    <div class="card tableFixHead" *ngIf="reportData && reportData.length > 0">
+      <table class="table table-bordered" id="po-table">
+        <thead class="thead-dark">
+          <tr class="table-heading">
+            <th>SI NO</th>
+            <th>Supplier Name</th>
+            <th>PO No</th>
+            <th>PO Date</th>
+            <th>Supplier Inv No</th>
+            <th>Supplier Inv Date</th>
+            <th>Supplier Inv Amt</th>
+            <th>Supplier Inv Paid</th>
+            <th>Supplier Inv Bal</th>
+            <th>GR Status</th>
+            <th>Payment Status</th>
+          </tr> 
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let data of reportData">
+                <tr *ngFor="let details of data.details; let i = index">
+                    <td>{{i+1}}</td>
+                    
+                    <td>{{data.supplier_name}}</td>
+        
+                    <td>{{details.po_number}}</td>
+
+                    <td>{{details.po_date | date: 'dd-MM-yyyy'}}</td>
+
+                    <td>{{details.supplier_invoice_num}}</td>  
+                    
+                    <td>{{details.payment_date | date: 'dd-MM-yyyy'}}</td>
+
+                    <td>{{details.supp_inv_amt}}</td>
+
+                    <td>{{details.supp_inv_amt_paid}}</td>
+
+                    <td>{{details.supp_inv_amt_bal}}</td>  
+                    
+                    <td>{{details.goods_rcpt_status}}</td>
+
+                    <td>{{details.payment_status}}</td>
+                
+                </tr>
+                <tr class="bg-yellow highlight">
+                  <td class="" colspan="6">Total</td>
+
+                  <td class="">{{data.supp_inv_amt}}</td>
+
+                  <td class="">{{data.supp_inv_amt_paid}}</td>
+
+                  <td class="">{{data.supp_inv_amt_bal}}</td>
+
+                  <td class=""></td>
+
+                  <td class=""></td>
+                </tr>
+            </ng-container>
+        </tbody>
+      </table>
+    </div>
+</div>

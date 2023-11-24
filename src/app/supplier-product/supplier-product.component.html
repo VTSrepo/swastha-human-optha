@@ -1,0 +1,186 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+        <h3>Supplier Product Master</h3>
+        <form [formGroup]="supplierProductForm">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class=" supplier-item">
+                        <label for="branch_id" class="form-label">Branch ID<span class="txt-danger">*</span></label>
+                        <select class="form-control" name="branch_id"  formControlName="branch_id">
+                            <option *ngFor="let branch of branchList;" [value]="branch.branch_id">{{branch.branch_name}}</option>
+    
+                        </select>
+                        <!-- <input type="text" class="form-control" name="branch_id" formControlName="branch_id"
+                             id="branch_id" required> -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class=" supplier-item">
+                        <label for="supplier_name" class="form-label">Supplier Name<span class="txt-danger">*</span></label>
+                        <select class="form-control" name="supplier_name"  formControlName="supplier_name" (ngModelChange)="onChange($event)">
+                            <option *ngFor="let suppData of supplierIdData" [value]="suppData.supplier_id">{{suppData.supplier_name}}</option>
+    
+                        </select>
+                        <!-- <input type="text" class="form-control" formControlName="supplier_id" name="supplier_id" id="supplier_id"> -->
+                    </div>
+                </div> 
+                <div class="col-md-4">
+                    <div class="supplier-item">
+                        <label for="supplier_id" class="form-label">Supplier ID</label>
+                        <input type="text" class="form-control" formControlName="supplier_id"
+                            name="supplier_id"  id="supplier_id" readonly>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row card">
+                <div class="col-12 text-right">
+                    <button class="btn btn-warning pointer" (click)="clear()"><i class="fa-solid fa-rotate-left mar5r"></i>Clear</button>
+                </div>
+                <div class="col">
+                    <div class=" supplier-item">
+                        <label for="bu_id" class="form-label">Bu ID</label>
+                        <select class="form-control" name="bu_id"  formControlName="bu_id" (ngModelChange)="fetchProductsDynamic()">
+                            <option *ngFor="let bu of buList" [value]="bu.bu_id">{{bu.bu_name}}</option>
+    
+                        </select>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class=" supplier-item">
+                        <label for="product_name" class="form-label">Product Name</label>
+                        <select class="form-control" name="product_name"  formControlName="product_name" (ngModelChange)="setProductId($event)" [(ngModel)]="prodItem.product_name">
+                            <option [hidden]="supplierProductForm.controls.product_name.value" value="null" disabled>Select</option>
+                            <option *ngFor="let prodData of productList" [value]="prodData.product_name">{{prodData.product_name}}</option>
+                        </select>
+                    </div>
+                </div> 
+                <div class="col">
+                    <div class="supplier-item">
+                        <label for="product_id" class="form-label">Product ID</label>
+                        <input type="text" class="form-control" formControlName="product_id"
+                            name="product_id"  id="product_id" [(ngModel)]="prodItem.product_id" readonly>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class=" supplier-item">
+                        <label for="purchase_price" class="form-label">Supplier Price</label>
+                        <input type="number" class="form-control" formControlName="purchase_price"
+                            name="purchase_price"  id="purchase_price" [(ngModel)]="prodItem.purchase_price">
+                    </div>
+                </div> 
+                <div class="col">
+                    <div class=" supplier-item">
+                        <label for="eff_from" class="form-label">Effect From</label>
+                        <input type="date" class="form-control" formControlName="eff_from"
+                            name="eff_from"  id="eff_from" [(ngModel)]="prodItem.eff_from">
+                    </div>
+                </div> 
+                <div class="col">
+                    <div class="supplier-item">
+                        <label for="credit_days" class="form-label">Credit Days</label>
+                        <input type="number" class="form-control" formControlName="credit_days"
+                            name="credit_days"  id="credit_days" [(ngModel)]="prodItem.credit_days">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-6 d-flex">
+                        <div class="col-3" *ngIf="isShowEdit">
+                            <button class="btn btn-success" (click)="addRecord()"><i class="fa-solid fa-circle-plus mar5r"></i>Add Record</button>
+                        </div>
+                        <div class="col-3" *ngIf="!isShowEdit">
+                            <button class="btn btn-warning pointer" (click)="editList()"><i class="fa-solid fa-file-pen mar5r"></i>Update Record</button>
+                        </div>
+                        <!-- <div class="col-2">
+                            <button class="btn btn-primary" (click)="submit()">Save</button>
+                        </div> -->
+                </div>
+            </div>
+            <br>
+        </form>
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Product Name</th>
+                    <th>Product ID</th>
+                    <th>Supplier Price</th>
+                    <th>Effect From</th>
+                    <th>Credit Days</th>
+                    <th>Active</th>
+                    <th>Action</th>
+                  </tr> 
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="SupplierProdData && SupplierProdData.length > 0">
+                        <tr *ngFor="let suppProdData of SupplierProdData">
+                            <td>{{suppProdData.product_name}}</td>
+    
+                            <td>{{suppProdData.product_id}}</td>
+                
+                            <td>{{suppProdData.purchase_price}}</td>
+    
+                            <td>{{suppProdData.eff_from | date: 'dd-MM-yyyy'}}</td>  
+                            
+                            <td>{{suppProdData.credit_days}}</td>
+
+                            <td *ngIf="suppProdData.active_flag == 'Y'">
+                                <div class="circle-green"></div>
+                            </td>
+                            <td *ngIf="suppProdData.active_flag == null">
+                                <div class="circle-red"></div>
+                            </td>
+                            
+                            <td>
+                                <mat-icon class="print-icon cancel-icon pointer delete-icon-disabled" disabled> border_color</mat-icon>
+                                <mat-icon title="delete" class="delete-icon delete-icon-disabled" aria-hidden="false" aria-label="Example home icon" disabled>delete</mat-icon> </td>
+                        </tr>
+                    </ng-container>
+                    <ng-container *ngIf="tableData.length > 0">
+                        <tr *ngFor="let item of tableData">
+                            <!-- <td>
+                                <form [formGroup]="buForm">
+                                    <select class="form-select scrollable-menu" aria-label="Default select example" (click)="fetchProductsDynamic(item.id)" formControlName="bu_id" [(ngModel)]="item.bu_id">
+                                        <option *ngFor="let bu of buList" [value]="bu.bu_id">{{bu.bu_name}}</option>                    
+                                    </select>
+                                </form>
+                            </td> -->
+                            <td>{{item.product_name}}</td>
+    
+                            <td>{{item.product_id}}</td>
+                
+                            <td>{{item.purchase_price}}</td>
+    
+                            <td>{{item.eff_from | date: 'dd-MM-yyyy'}}</td>  
+                            
+                            <td>{{item.credit_days}}</td>
+
+                            <!-- <td *ngIf="item.active_flag == 'Y'">
+                                <div class="circle-green"></div>
+                            </td>
+                            <td *ngIf="item.active_flag == null">
+                                <div class="circle-red"></div>
+                            </td> -->
+    
+                            <td>
+                                <div class="circle-red"></div>
+                            </td>
+                            
+                            <td>
+                                <mat-icon class="print-icon cancel-icon pointer" (click)="edit(item)"> border_color</mat-icon>
+                                <mat-icon title="delete" class="delete-icon pointer" aria-hidden="false" aria-label="Example home icon" (click)="delete_item(item)">delete</mat-icon> </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+              </table>
+              <br>
+                <div class="col-6 d-flex">
+                    <div class="col-2">
+                        <button class="btn btn-success" [disabled]="!isShowEdit" (click)="submit()"><i class="fa-solid fa-paper-plane mar5r"></i>Save</button>
+                    </div>
+                </div>
+        <!-- </form> -->
+    </div>
+</div>

@@ -1,0 +1,138 @@
+<app-header></app-header>
+
+<div #appointBooking class="container">
+  <div class="row">
+    <h2>Apointment Booking</h2>
+    <app-patient-header
+      *ngIf="!updateApt"
+      (outputPatientHeader)="patientHeaderData($event)"
+    ></app-patient-header>
+    <form #aptBookingForm="ngForm" novalidate>
+      <div class="row mar20t">
+        <div class="col-lg-2 patient-apt-item">
+          <label for="contact" class="form-label">Contact</label>
+          <input
+            type="number"
+            pattern=".{10}"
+            class="form-control"
+            required
+            name="contact"
+            [(ngModel)]="aptObj.phone_no"
+            id="contact"
+            [readonly]="updateApt"
+          />
+        </div>
+        <div class="col-lg-2 patient-apt-item">
+          <label for="patientID" class="form-label">Patient ID</label>
+          <input
+            type="text"
+            class="form-control"
+            name="patientID"
+            [(ngModel)]="aptObj.patient_id"
+            id="patientID"
+            [readonly]="updateApt"
+          />
+        </div>
+        <div class="col-lg-2 patient-apt-item">
+          <label for="patientName" class="form-label">Patient Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="patientName"
+            [(ngModel)]="aptObj.patient_name"
+            id="patientName"
+            [readonly]="updateApt"
+          />
+        </div>
+
+        <div class="col-lg-2 patient-apt-item">
+          <label for="appoint_date" class="form-label">Appointment Date</label>
+
+          <input
+            type="date"
+            required
+            min="{{ currentDate | date : 'yyyy-MM-dd' }}"
+            class="form-control"
+            name="appoint_date"
+            [(ngModel)]="aptObj.appoint_date"
+            id="appoint_date"
+          />
+        </div>
+        <div class="col-lg-2 patient-apt-item">
+          <label class="form-label">Department <span class="vertical-top"><mat-icon> format_list_bulleted</mat-icon></span></label>
+          <select
+            class="form-control"
+            name="dept_id"
+            [(ngModel)]="aptObj.dept_id"
+            (change)="fetchDoctorsByDept(true)"
+          >
+            <option *ngFor="let deptItem of dept" [value]="deptItem.dept_id">
+              {{ deptItem.dept_name }}
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-2 patient-apt-item">
+          <label class="form-label">Doctor Name <span class="vertical-top"><mat-icon> format_list_bulleted</mat-icon></span></label>
+          <select
+            class="form-control"
+            name="doctor_id"
+            [(ngModel)]="aptObj.doctor_id"
+          >
+            <option
+              *ngFor="let doctor of doctorList"
+              [value]="doctor.doctor_id"
+            >
+              {{ doctor.doctor_name }}
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-2 patient-apt-item">
+          <label for="ailment" class="form-label">Ailment</label>
+          <input
+            type="text"
+            class="form-control"
+            name="ailment"
+            [(ngModel)]="aptObj.ailment"
+            id="ailment"
+          />
+        </div>
+
+        <div class="col-lg-3 patient-apt-item" *ngIf="updateApt">
+          <label class="form-label">Status</label>
+          <select
+            class="form-control"
+            name="patient_type"
+            [(ngModel)]="aptObj.appoint_status"
+          >
+            <option
+              *ngFor="let status of aptStatusList"
+              [value]="status.ref_code"
+            >
+              {{ status.ref_desc }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn btn-danger mar20t mar10lr" (click)="goBack()">
+        <i class="fa-solid fa-arrow-left mar5r"></i>Back
+      </button>
+      <button
+        [disabled]="!aptBookingForm.valid"
+        *ngIf="!updateApt"
+        (click)="bookApt()"
+        class="btn btn-primary submit-btn mar20t mar10lr"
+      >
+        <i class="fa-solid fa-paper-plane mar5r"></i>Book
+      </button>
+      <button
+        *ngIf="updateApt"
+        [disabled]="!aptBookingForm.valid"
+        (click)="updateAppointment()"
+        class="btn btn-warning mar20t mar10lr"
+      >
+        <i class="fa-solid fa-paper-plane mar5r"></i>Update
+      </button>
+    </form>
+  </div>
+</div>

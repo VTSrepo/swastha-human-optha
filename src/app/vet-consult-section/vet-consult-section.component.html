@@ -1,0 +1,263 @@
+<div class="error-container" *ngIf="!visit_no">
+  Please save doctor notes to save Details
+</div>
+<div class="row">
+  <div class="col-md-12 align-end" *ngIf="!showPreviousTable">
+    <button class="btn btn-success ms-2" (click)="displayPrevious()">
+      Show Previous
+    </button>
+    <button class="btn btn-success ms-2" (click)="retrieveFiles()">
+      view Files
+    </button>
+    <button class="btn btn-success ms-2" (click)="showFiles = false;">
+      close File list
+    </button>
+  </div>
+  <div class="col-md-12" *ngIf="showFiles">
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">File Name</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of filesList; let i = index">
+            <td>{{ item.fileName }}</td>
+            <td>
+              <mat-icon
+                title="preview"
+                class="edit-icon"
+                aria-hidden="false"
+                aria-label="edit icon"
+                (click)="view(item.filePath)"
+                >preview
+              </mat-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div >
+      <img *ngIf="imageSrc != ''" style="height: 200px; width: 200px" [src]="imageSrc" />
+
+      <video *ngIf="videoSrc != ''" style="height: 400px; width: 400px" [src]="videoSrc" controls></video>
+    </div>
+    
+  </div>
+  <div class="col-md-12 align-end" *ngIf="showPreviousTable">
+    <div>
+      <li class="mx-2">
+        Visit#: <strong>{{ showVisitNo }}</strong>
+      </li>
+      <li class="mx-2">
+        Visit Date: <strong>{{ showVisitDate | date : "dd-MM-yyyy" }}</strong>
+      </li>
+    </div>
+    <ul class="pagination pointer">
+      <li class="page-item" [ngClass]="{ disabled: recordIndex === 0 }">
+        <a class="page-link" (click)="prevItem()">Previous</a>
+      </li>
+      <li
+        class="page-item"
+        [ngClass]="{
+          disabled:
+            recordIndex === undefined || recordIndex === getLastRecordIndex()
+        }"
+      >
+        <a class="page-link" (click)="nextItem()">Next</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<form *ngIf="sectionParamData">
+  <div
+    class="custom-card vet-dynamic-section-form"
+    *ngFor="let section of sectionParamData"
+  >
+    <div class="row">
+      <div class="col-md-4 pg-10">
+        <label class="form-label txt-b">{{ section.sub_heading }}</label>
+      </div>
+      <div class="col-md-4 pg-10">
+        <label class="form-label">Right Eye</label>
+      </div>
+      <div class="col-md-4 pg-10">
+        <label class="form-label">Left Eye</label>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="col-md-12 pg section-row-flex"
+        *ngFor="let property of section.details"
+      >
+        <div class="col-md-1">
+          <label class="form-label pg-t">{{ property.column_name_text }}</label>
+        </div>
+        <div class="col-md-5 flex-align" *ngIf="!showPreviousTable">
+          <div class="col-md-1">
+            <!-- <img
+              *ngIf="property.image_le === 'Y'"
+              [src]="property.image_le_path"
+              alt="image"
+            /> -->
+            <mat-icon
+              *ngIf="property.image_re === 'Y'"
+              (click)="displayFieldImage(property, 'R')"
+              >remove_red_eye</mat-icon
+            >
+          </div>
+          <div class="col-1">
+            <app-multiselect
+              *ngIf="property.column_name_type === 'LOV'"
+              [rowData]="property"
+              [left]="'_RE'"
+            ></app-multiselect>
+          </div>
+          <div class="col-3">
+            <input
+              type="text"
+              class="form-control"
+              [id]="setIDs(property.column_name_prefix, '_RE')"
+            />
+          </div>
+          <div class="col-5">
+            <textarea
+              type="text"
+              rows="1"
+              class="form-control"
+              [id]="setIDs(property.column_name_prefix, '_Remark_RE')"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col-md-5 flex-align" *ngIf="showPreviousTable">
+          <div class="col-md-1">
+           
+            <mat-icon
+              *ngIf="property.image_re === 'Y' && property.image_re_path!=null"
+              (click)="displayFieldImage(property, 'R')"
+              >remove_red_eye</mat-icon
+            ></div>
+
+          <div class="col-3">
+            <input
+              type="text"
+              class="form-control"
+              readonly
+              [id]="setIDs(property.column_name_prefix, '_RE')"
+              [value]="property.column_name_re"
+            />
+          </div>
+          <div class="col-5">
+            <textarea
+              type="text"
+              rows="1"
+              readonly
+              class="form-control"
+              [id]="setIDs(property.column_name_prefix, '_Remark_RE')"
+              [value]="property.column_name_rem_re"
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="col-md-5 flex-align" *ngIf="!showPreviousTable">
+          <div class="col-1">
+            <mat-icon
+              *ngIf="property.image_le === 'Y'"
+              (click)="displayFieldImage(property, 'L')"
+              >remove_red_eye</mat-icon
+            >
+          </div>
+          <div class="col-1">
+            <app-multiselect
+              *ngIf="property.column_name_type === 'LOV'"
+              [rowData]="property"
+              [left]="'_LE'"
+            ></app-multiselect>
+          </div>
+          <div class="col-3">
+            <input
+              type="text"
+              class="form-control"
+              [id]="setIDs(property.column_name_prefix, '_LE')"
+            />
+          </div>
+          <div class="col-5">
+            <textarea
+              type="text"
+              rows="1"
+              class="form-control"
+              [id]="setIDs(property.column_name_prefix, '_Remark_LE')"
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="col-md-5 flex-align" *ngIf="showPreviousTable">
+          <div class="col-1">
+            <mat-icon
+              *ngIf="property.image_le === 'Y' && property.image_le_path!=null"
+              (click)="displayFieldImage(property, 'L')"
+              >remove_red_eye</mat-icon
+            >
+          </div>
+
+          <div class="col-3">
+            <input
+              type="text"
+              class="form-control"
+              readonly
+              [id]="setIDs(property.column_name_prefix, '_LE')"
+              [value]="property.column_name_le"
+            />
+          </div>
+          <div class="col-5">
+            <textarea
+              type="text"
+              rows="1"
+              class="form-control"
+              readonly
+              [id]="setIDs(property.column_name_prefix, '_Remark_LE')"
+              [value]="property.column_name_rem_le"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div></div>
+  </div>
+</form>
+<div class="row mar20tb">
+  <div class="col-md-4"></div>
+  <div class="col-md-4 pointer">
+    <button
+      type="button"
+      class="btn btn-success"
+      (click)="saveValues()"
+      *ngIf="!showPreviousTable"
+      [disabled]="!visit_no"
+    >
+      Save
+    </button>
+    <button
+      type="button"
+      class="btn btn-success"
+      (click)="back()"
+      *ngIf="showPreviousTable"
+    >
+      Back
+    </button>
+
+    <!-- <button
+      type="button"
+      class="btn btn-success margin-20l"
+      (click)="back2Section()"
+      
+    >
+      Back to Sections
+    </button> -->
+  </div>
+  <div class="col-md-4"></div>
+</div>
+

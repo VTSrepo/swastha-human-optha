@@ -1,0 +1,28 @@
+<app-header></app-header>
+<app-base-detail></app-base-detail>
+<div class="container">
+  <div class="row margin10t">
+    <div >
+      <mat-tab-group>
+        <mat-tab label="Appointments">          
+          <div *ngIf="aptData && aptData.length > 0" class="mar20t">
+            <app-appointment-table
+              [appointmentTableData]="aptData"
+            ></app-appointment-table></div
+        ></mat-tab>
+
+        <mat-tab label="Patient Schedule">
+          
+          <div
+            *ngIf="patientScheduleData && patientScheduleData.length > 0"
+            class="mar20t"
+          >
+            <app-patient-schedule-table
+              [patientScheduleTableData]="patientScheduleData"
+            ></app-patient-schedule-table></div></mat-tab
+      ></mat-tab-group>
+    </div>
+  </div>
+</div>
+
+

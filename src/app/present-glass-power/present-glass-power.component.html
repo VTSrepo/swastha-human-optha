@@ -1,0 +1,163 @@
+<div class="row">
+    <div class="col-md-4" *ngIf="!showPreviousTable">
+        <button class="btn btn-success ms-2" (click)="displayPrevious()">Show Previous</button>
+    </div>
+    <div class="col-md-4" *ngIf="showPreviousTable">
+        <div>
+            <li class="mx-2">Visit#: <strong>{{showVisitNo}}</strong></li>
+            <li class="mx-2">Visit Date: <strong>{{showVisitDate | date : "dd-MM-yyyy"}}</strong></li>
+        </div>
+        <ul class="pagination pointer">
+            <li class="page-item" [ngClass]="{'disabled': recordIndex === 0 || pgpDetailData.length == 0 }">
+                <a class="page-link" (click)="prevItem()">Previous</a>
+            </li>
+            <li class="page-item" [ngClass]="{'disabled': recordIndex === undefined || recordIndex === getLastRecordIndex() }">
+                <a class="page-link" (click)="nextItem()">Next</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-8 txt-align">
+        <button mat-raised-button color="primary" class="mar-right" (click)="rightToLeft()" [disabled]="showPreviousTable">Right to Left</button>
+        <button mat-raised-button color="accent" (click)="leftToRight()" [disabled]="showPreviousTable">Left to Right</button>
+    </div>
+</div>
+<div class="error-container" *ngIf="!visit_no">Please save doctor notes to save Present Glass Power details</div>
+<form [formGroup]="presentGlassPowerForm">
+    <div class="row margin-20l">
+        <div class="col-md-6">
+            <table class="table table-bordered">
+                <thead class="">
+                    <tr>
+                      <th scope="colgroup" class="txt-center">Right eye</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <table class="table table-bordered">
+                            <thead class="">
+                                <tr>
+                                    <th rowspan="2">Distance</th>
+                                    <th class="txt-center">SPH</th>
+                                      <th class="txt-center">CYL</th>
+                                      <th class="txt-center">AXIS</th>
+                                  </tr>
+                                    <tr>
+                                        <td>
+                                            <!-- <input type="text" class="form-control" formControlName="sph_distance_re"> -->
+                                            <select type="dropdown" class="form-control" formControlName="sph_distance_re" required>
+                                                <option value="" selected disabled>-Select-</option>
+                                                <option *ngFor="let vaValue of distanceList" value="{{vaValue.ref_code}}">{{vaValue.ref_desc}}</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="text" class="form-control" formControlName="cyl_distance_re"></td>
+                                        <td><input type="text" class="form-control" formControlName="axis_distance_re"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><button class="btn btn-primary margin-20t" (click)="addRight()" [disabled]="!presentGlassPowerForm.controls.sph_add_re.value">Add</button></td>
+                                        <td>
+                                            <input type="text" class="form-control" formControlName="sph_add_re">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="2">Near</th>
+                                        <td><input type="text" class="form-control" formControlName="sph_near_re"></td>
+                                        <td><input type="text" class="form-control" formControlName="cyl_near_re"></td>
+                                        <td><input type="text" class="form-control" formControlName="axis_near_re"></td>
+                                    </tr>
+                            </thead>
+                        </table>
+                    </tr>
+            </table>
+        </div>
+
+        <div class="col-md-6">
+            <table class="table table-bordered">
+                <thead class="">
+                    <tr>
+                      <th scope="colgroup" class="txt-center">Left eye</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <table class="table table-bordered">
+                        <thead class="">
+                            <tr>
+                                <th rowspan="2">Distance</th>
+                                <th class="txt-center">SPH</th>
+                                    <th class="txt-center">CYL</th>
+                                    <th class="txt-center">AXIS</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <!-- <input type="text" class="form-control" formControlName="sph_distance_le"> -->
+                                        <select type="dropdown" class="form-control" formControlName="sph_distance_le" required>
+                                            <option value="" selected disabled>-Select-</option>
+                                            <option *ngFor="let vaValue of distanceList" value="{{vaValue.ref_code}}">{{vaValue.ref_desc}}</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" class="form-control" formControlName="cyl_distance_le"></td>
+                                    <td><input type="text" class="form-control" formControlName="axis_distance_le"></td>
+                                </tr>
+                                <tr>
+                                    <td><button class="btn btn-primary margin-20t" (click)="addLeft()" [disabled]="!presentGlassPowerForm.controls.sph_add_le.value">Add</button></td>
+                                    <td>
+                                        <input type="text" class="form-control" formControlName="sph_add_le">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th rowspan="2">Near</th>
+                                    <td><input type="text" class="form-control" formControlName="sph_near_le"></td>
+                                    <td><input type="text" class="form-control" formControlName="cyl_near_le"></td>
+                                    <td><input type="text" class="form-control" formControlName="axis_near_le"></td>
+                                </tr>
+                        </thead>
+                    </table>
+                </tr>
+            </table>
+        </div>
+
+        <div class="row pg-1">
+            <div class="col-md-4">
+                <label class="form-label margin-20t">Lens material</label>
+            </div>
+            <div class="col-md-6">
+                <select type="text"  class="form-control margin-10t" formControlName="lens_material" required>
+                    <option value="" selected disabled>-Select-</option>
+                    <option *ngFor="let lens of lensMaterialList" value="{{lens.ref_code}}">{{lens.ref_desc}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row pg-1">
+            <div class="col-md-4">
+                <label class="form-label margin-20t">Type of Lense</label>
+            </div>
+            <div class="col-md-6">
+                <select type="text"  class="form-control margin-10t" formControlName="lens_type" required>
+                    <option value="" selected disabled>-Select-</option>
+                    <option *ngFor="let lensType of typeOfLensList" value="{{lensType.ref_code}}">{{lensType.ref_desc}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row pg-1">
+            <div class="col-md-4">
+                <label class="form-label margin-20t">Coating</label>
+            </div>
+            <div class="col-md-6">
+                <select type="text"  class="form-control margin-10t" formControlName="lens_coating" required>
+                    <option value="" selected disabled>-Select-</option>
+                    <option *ngFor="let coating of coatingList" value="{{coating.ref_code}}">{{coating.ref_desc}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 pointer txt-center">
+        <button type="button" class="btn btn-success margin-10t" (click)="savePresentGlassPower()" *ngIf="!showPreviousTable" [disabled]="!visit_no">
+            Save
+        </button>
+        <button type="button" class="btn btn-success margin-20t" (click)="back()" *ngIf="showPreviousTable">
+            Back
+        </button>
+    </div>
+    <div class="col-md-4"></div>
+</div>

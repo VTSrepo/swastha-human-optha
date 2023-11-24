@@ -1,0 +1,126 @@
+<div class="row">
+    <div class="col-md-4" *ngIf="!showPreviousTable">
+        <button class="btn btn-success ms-2" (click)="displayPrevious()">Show Previous</button>
+    </div>
+    <div class="col-md-4" *ngIf="showPreviousTable">
+        <div>
+            <li class="mx-2">Visit#: <strong>{{showVisitNo}}</strong></li>
+            <li class="mx-2">Visit Date: <strong>{{showVisitDate | date : "dd-MM-yyyy"}}</strong></li>
+        </div>
+        <!-- <ul class="pagination pointer">
+            <li class="page-item" [ngClass]="{'disabled': recordIndex === 0 || recordIndex === undefined }">
+                <a class="page-link" (click)="prevItem()">Previous</a>
+            </li>
+            <li class="page-item" [ngClass]="{'disabled': recordIndex === undefined || recordIndex === getLastRecordIndex() }">
+                <a class="page-link" (click)="nextItem()">Next</a>
+            </li>
+        </ul> -->
+    </div>
+</div>
+<div class="error-container" *ngIf="!visit_no">Please save doctor notes to save Intra Ocular Pressure details</div>
+<form [formGroup]="intraOcularPressureForm">
+    <div class="row margin-20l">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="form-label margin-20t">IOP Type</label>
+                </div>
+                <div class="col-md-9">
+                    <mat-radio-group aria-label="Select an option" formControlName="iop_type">
+                        <mat-radio-button value="Non-contact tonometer" class="margin-l">Non-contact tonometer</mat-radio-button>
+                        <mat-radio-button value="AT" class="margin-l">AT</mat-radio-button>
+                        <mat-radio-button value="Schiotz" class="margin-l">Schiotz</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+            <div class="row margin-bottom">
+                <div class="col-md-3"></div>
+                <div class="col-md-4">
+                    <label class="form-label margin-20t">Right Eye</label>
+                    <div class="display-flex">
+                        <input type="text" class="form-control" formControlName="pressure_re"><label class="form-label">mmHg</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label margin-20t">Left Eye</label>
+                    <div class="display-flex">
+                        <input type="text" class="form-control" formControlName="pressure_le">mmHg
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-bottom">
+                <div class="col-md-3">
+                    <label class="form-label margin-20t">Time</label>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" formControlName="timer">
+                        </div>
+                        <div class="col-md-6">
+                            <mat-checkbox class="example-margin"
+                            formControlName="checkbox"
+                            (change)="setCurrentTime($event.checked)">
+                                Automatic
+                            </mat-checkbox>
+                            <!-- <input type="checkbox" formControlName="checkbox" (click)="setCurrentTime()"><label class="form-label margin-20t">Automatic</label> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="form-label margin-20t">Remarks</label>
+                </div>
+                <div class="col-md-9">
+                    <textarea type="text" class="form-control" formControlName="remarks"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-2">
+                    <button mat-mini-fab extended (click)="addIopDataToArr()">
+                        <mat-icon>add</mat-icon>
+                    </button> 
+                </div>
+                <div class="col-md-10">
+                    <label class="form-label margin-20t">List of IOP values</label>
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>IOP Type</th>
+                                <th>Right Eye</th>
+                                <th>Left Eye</th>
+                                <th>Time</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let iop of iopList">
+                            <td>{{iop.iop_type}}</td>
+                            <td>{{iop.pressure_re}}</td>
+                            <td>{{iop.pressure_le}}</td>
+                            <td>{{iop.timer}}</td>
+                            <td>{{iop.remarks}}</td>
+                        </tr> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<br>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 pointer txt-center">
+        <button type="button" class="btn btn-success margin-10t" (click)="saveintraOcularPressure()" *ngIf="!showPreviousTable" [disabled]="!visit_no || iopList.length == 0">
+            Save
+        </button>
+        <button type="button" class="btn btn-success margin-20t" (click)="back()" *ngIf="showPreviousTable">
+            Back
+        </button>
+    </div>
+    <div class="col-md-4"></div>
+</div>

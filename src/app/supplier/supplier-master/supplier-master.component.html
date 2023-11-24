@@ -1,0 +1,220 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+        <h3>Supplier Master</h3>
+        <form [formGroup]="supplierInputForm">
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field class="width25-perc mar20lr"  appearance="fill">
+                        <mat-label>supplier Name</mat-label>
+                        <input type="text" matInput name="supplier_name" required [(ngModel)]="search"
+                          placeholder="Pick one" aria-label="supplier_name" formControlName="supplier_name" [matAutocomplete]="auto" [maxLength]="500">
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="setProductCost($event.option.value)">
+                          <mat-option *ngFor="let f of (folderObjs | filter:search)as folder" [value]="f.supplier_name">
+                            {{f?.supplier_name}}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>Supplier ID</mat-label>
+                        <input matInput type="text" formControlName="supplier_id"
+                          name="supplier_id" readonly>
+                  
+                      </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>Operational From</mat-label>
+                        <input matInput type="date" formControlName="supplier_opendate"
+                          name="supplier_opendate">
+                      </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>Registered Address</mat-label>
+                        <textarea matInput type="text" formControlName="supplier_address"
+                          name="supplier_address" [maxLength]="5000"></textarea>
+                  
+                      </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>Communication Address</mat-label>
+                        <textarea matInput type="text" formControlName="comm_address"
+                          name="comm_address" [maxLength]="2000"></textarea>
+                  
+                      </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>Pincode</mat-label>
+                        <input matInput type="number" [maxLength]="10" formControlName="pin_code"
+                          name="pin_code">
+                  
+                      </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>Contact Number</mat-label>
+                        <input matInput type="number" formControlName="supplier_contact_num"
+                          name="supplier_contact_num" [maxLength]="15">
+                  
+                      </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>Email ID</mat-label>
+                        <input matInput type="text" formControlName="supplier_email_id"
+                          name="supplier_email_id" [maxLength]="100">
+                  
+                      </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>Website</mat-label>
+                        <input matInput type="text" formControlName="supplier_website"
+                          name="supplier_website" [maxLength]="100">
+                  
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>Contact Person</mat-label>
+                        <input matInput type="text" formControlName="supplier_cont_pers"
+                          name="supplier_cont_pers" [maxLength]="100">
+                  
+                      </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>Contact Person Phone</mat-label>
+                        <input matInput type="text" formControlName="supplier_cont_pers_phone"
+                          name="supplier_cont_pers_phone" [maxLength]="15">
+                  
+                      </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>Contact Person Email</mat-label>
+                        <input matInput type="text" formControlName="supplier_cont_pers_email"
+                          name="supplier_cont_pers_email" [maxLength]="100">
+                  
+                    </mat-form-field>
+                </div>
+
+
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>GST Number</mat-label>
+                        <input matInput type="text" formControlName="supplier_gst_num"
+                          name="supplier_gst_num" [maxLength]="100">
+                  
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>Local GST Number</mat-label>
+                        <input matInput type="text" formControlName="supplier_localgst_num"
+                          name="supplier_localgst_num" [maxLength]="100">
+                  
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>CST Number</mat-label>
+                        <input matInput type="text" formControlName="supplier_cst_num"
+                          name="supplier_cst_num" [maxLength]="100">
+                  
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>PAN No</mat-label>
+                        <input matInput type="text" formControlName="pan_no"
+                          name="pan_no" [maxLength]="100">
+                  
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>DL #</mat-label>
+                        <input matInput type="text" formControlName="dl_no"
+                          name="dl_no" [maxLength]="100">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>Credit Days</mat-label>
+                        <input matInput type="number" formControlName="credit_days"
+                          name="credit_days">
+                  
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>Bank Name</mat-label>
+                        <input matInput type="text" formControlName="bank_name"
+                          name="bank_name" [maxLength]="100">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>Bank Branch</mat-label>
+                        <input matInput type="text" formControlName="bank_branch"
+                          name="bank_branch" [maxLength]="100">
+                      </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>Accout Number</mat-label>
+                        <input matInput type="text" formControlName="account_no"
+                          name="account_no" [maxLength]="50">
+                  
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>IFSC Code</mat-label>
+                        <input matInput type="text" formControlName="ifsc_no"
+                          name="ifsc_no" [maxLength]="50">
+                  
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="mar20lr" appearance="fill">
+                        <mat-label>Cheque Favour of</mat-label>
+                        <input matInput type="text" formControlName="chq_name"
+                          name="chq_name" [maxLength]="100">
+                  
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <button type="button" class="btn btn-success mar30 fs-12"
+            (click)="submit()"><i class="fa-solid fa-paper-plane mar5r"></i>
+            Save
+            </button>
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-danger mar30 fs-12"
+            (click)="cancel()"><i class="fa-solid fa-circle-xmark mar5r"></i>
+            Cancel
+            </button>
+        </div>
+    </div>
+</div>
