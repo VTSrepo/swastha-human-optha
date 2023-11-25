@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule,  } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -49,7 +49,7 @@ import { SupplierMasterComponent } from './supplier/supplier-master/supplier-mas
 import { SupplierProductComponent } from './supplier-product/supplier-product.component';
 import { FilterPipe } from './supplier/supplier-master/filter';
 import { EodComponent } from './eod/eod.component';
-import { CancelInvoiceDialogComponent } from './utilities/cancel-invoice-dialog/cancel-invoice-dialog.component'
+import { CancelInvoiceDialogComponent } from './utilities/cancel-invoice-dialog/cancel-invoice-dialog.component';
 import { ViewProductDialogComponent } from './utilities/view-product-dialog/view-product-dialog.component';
 import { CollectionPaymentwiseReportComponent } from './collection-payment-report/collection-payment-report.component';
 import { PoComponent } from './po/po.component';
@@ -64,11 +64,11 @@ import { PaymentReceiptsComponent } from './payment-receipts/payment-receipts.co
 import { UpdatePayreceiptsComponent } from './update-payreceipts/update-payreceipts.component';
 import { PrTableComponent } from './update-payreceipts/pr-table/pr-table.component';
 import { ProductMasterComponent } from './product-master/product-master.component';
-import { ProductMasterListingComponent } from './product-master-listing/product-master-listing.component'
+import { ProductMasterListingComponent } from './product-master-listing/product-master-listing.component';
 import { PMTableComponent } from './product-master-listing/pr-table/pr-table.component';
 import { NormalPricingComponent } from './product-master-listing/normal-pricing/normal-pricing.component';
-import { InsurancePricingComponent } from './product-master-listing/insurance-pricing/insurance-pricing.component'
-import { PoReportsComponent } from './po-reports/po-reports.component'
+import { InsurancePricingComponent } from './product-master-listing/insurance-pricing/insurance-pricing.component';
+import { PoReportsComponent } from './po-reports/po-reports.component';
 import { DatePipe } from '@angular/common';
 import { GoodsReportsComponent } from './goods-reports/goods-reports.component';
 import { SupplierReportsComponent } from './supplier-reports/supplier-reports.component';
@@ -114,20 +114,16 @@ import { DiagnosisAndAdviceComponent } from './diagnosis-and-advice/diagnosis-an
 import { ExaminationComponent } from './examination/examination.component';
 import { VetConsultSectionComponent } from './vet-consult-section/vet-consult-section.component';
 import { MultiselectComponent } from './multiselect/multiselect.component';
-import { PetRegistrationComponent } from './pet-registration/pet-registration.component';
+//import { PetRegistrationComponent } from './pet-registration/pet-registration.component';
 import { PetHistoryComponent } from './pet-history/pet-history.component';
-import { PetTreatmentComponent } from './pet-treatment/pet-treatment.component';
-import { PetDiagnosisComponent } from './pet-diagnosis/pet-diagnosis.component';
+
 import { PetVisit360ViewComponent } from './pet-visit360-view/pet-visit360-view.component';
-import {ViewPetFieldImage} from './utilities/pet-section-field-image-view/pet-section-field-image-view.component';
+import { ViewPetFieldImage } from './utilities/pet-section-field-image-view/pet-section-field-image-view.component';
 import { ImageDrawingModule } from 'ngx-image-drawing';
 import { PetConsulationComponent } from './pet-consulation/pet-consulation.component';
 import { PetDynamicHomeComponent } from './pet-dynamic-home/pet-dynamic-home.component';
 import { PetVitalParameterComponent } from './pet-vital-parameter/pet-vital-parameter.component';
-import { ManagePetComponent } from './manage-pet/manage-pet.component';
-import { PetHealthComponent } from './pet-health/pet-health.component';
-//import { InvoicePaymentTable } from './invoice-payment-report/invoice-payment-table/invoice-payment-table.component';
-//import { InvoiceProductTable } from './invoice-product-report/invoice-product-table/invoice-product-table.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -229,19 +225,16 @@ import { PetHealthComponent } from './pet-health/pet-health.component';
     IntraOcularPressureComponent,
     DiagnosisAndAdviceComponent,
     ExaminationComponent,
-    VetConsultSectionComponent,    
+    VetConsultSectionComponent,
     MultiselectComponent,
-    PetRegistrationComponent,
+
     PetHistoryComponent,
-    PetTreatmentComponent,
-    PetDiagnosisComponent,
+    
     PetVisit360ViewComponent,
     ViewPetFieldImage,
     PetDynamicHomeComponent,
     PetConsulationComponent,
     PetVitalParameterComponent,
-    ManagePetComponent,
-    PetHealthComponent
   ],
   imports: [
     BrowserModule,
@@ -254,9 +247,9 @@ import { PetHealthComponent } from './pet-health/pet-health.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-    ImageDrawingModule
+    ImageDrawingModule,
   ],
   providers: [AuthService, DatePipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

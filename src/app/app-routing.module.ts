@@ -49,11 +49,10 @@ import { ExportReportComponent } from './export-report/export-report.component';
 import { InvoicePaymentReportComponent } from './invoice-payment-report/invoice-payment-report.component';
 import { InvoiceProductReportComponent } from './invoice-product-report/invoice-product-report.component';
 import { PatientVisit360ViewComponent } from './patient-visit360-view/patient-visit360-view.component';
-import { PetRegistrationComponent } from './pet-registration/pet-registration.component';
+//import { PetRegistrationComponent } from './pet-registration/pet-registration.component';
 import { PetConsulationComponent } from './pet-consulation/pet-consulation.component';
 import { PetDynamicHomeComponent } from './pet-dynamic-home/pet-dynamic-home.component';
-import { ManagePetComponent } from './manage-pet/manage-pet.component';
-import { PetHealthComponent } from './pet-health/pet-health.component';
+
 
 const routes: Routes = [
   {
@@ -255,10 +254,7 @@ const routes: Routes = [
     path: 'patient-visit360-view',
     component: PatientVisit360ViewComponent
   },
-  {
-    path: 'pet-reg',
-    component: PetRegistrationComponent
-  },
+  
   {
     path: 'pet-consultation-home',
     component: PetConsulationComponent,
@@ -267,14 +263,6 @@ const routes: Routes = [
     path: 'pet-dynamic-home',
     component: PetDynamicHomeComponent,
   },
-  {
-    path: 'manage-pet',
-    component: ManagePetComponent
-  },
-  {
-    path: 'pet-health',
-    component: PetHealthComponent
-  }
 
 
 ];
