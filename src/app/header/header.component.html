@@ -1,16 +1,32 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
-    <img class="app-logo" [routerLink]="['/landing']">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <img class="app-logo" [routerLink]="['/landing']" />
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown" *ngIf="showHeader">
+    <div
+      class="collapse navbar-collapse"
+      id="navbarNavDropdown"
+      *ngIf="showHeader"
+    >
       <ul class="navbar-nav menu-list">
-
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-calendar-check"></i>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            ><i class="fa-solid fa-calendar-check"></i>
             OP
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -24,36 +40,29 @@
                 >Patient Registration</a
               >
             </li>
-            <!-- <li>
-              <a class="dropdown-item" [routerLink]="'/pet-reg'"
-                >Pet Registration</a
-              >
-            </li> -->
+
             <li class="dropdown-item" [routerLink]="'/patient-schedule'">
-               Schedule Visit
+              Schedule Visit
             </li>
-            <li class="dropdown-item" [routerLink]="'/patient-health'">Patient-health</li>
-            <!-- <li class="dropdown-item" [routerLink]="'/pet-health'">Pet-health</li> -->
-            <li class="dropdown-item" [routerLink]="'/manage-patient'">Patient Management</li>
-            <!-- <li class="dropdown-item" [routerLink]="'/manage-pet'">Pet Management</li> -->
+            <li class="dropdown-item" [routerLink]="'/patient-health'">
+              Patient-health
+            </li>
+
+            <li class="dropdown-item" [routerLink]="'/manage-patient'">
+              Patient Management
+            </li>
           </ul>
         </li>
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-notes-medical"></i>
-            Doctor Consultation
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
-            <li class="dropdown-item" [routerLink]="'/doc-consult'">
-              Consultation
-            </li>
-            
-          </ul>
-        </li> -->
-        
+
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-file-invoice"></i>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLink3"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            ><i class="fa fa-file-invoice"></i>
             Billing
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
@@ -76,14 +85,20 @@
               <a class="dropdown-item" [routerLink]="'/print'" href="#"
                 >Invoice View/Print</a
               >
-            </li>           
+            </li>
           </ul>
         </li>
 
         <!-- Insurance Summary -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pattientwise-report" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false"><i class="fa-solid fa-bed-pulse"></i>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="pattientwise-report"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            ><i class="fa-solid fa-bed-pulse"></i>
             Insurance
           </a>
           <ul class="dropdown-menu" aria-labelledby="pattientwise-report">
@@ -104,8 +119,14 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pattientwise-report" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false"><i class="fa-solid fa-file"></i>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="pattientwise-report"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            ><i class="fa-solid fa-file"></i>
             Reports
           </a>
           <ul class="dropdown-menu" aria-labelledby="pattientwise-report">
@@ -205,14 +226,19 @@
                 >Invoice Product Report</a
               >
             </li>
-            <!-- <li class="dropdown-item"><a class="dropdown-item" [routerLink]="'/collection-payment-wise'" href="#">Collection Payment wise Report</a></li> -->
           </ul>
         </li>
 
         <!-- supplier -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pattientwise-report" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false"><i class="fa-solid fa-truck-field"></i>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="pattientwise-report"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            ><i class="fa-solid fa-truck-field"></i>
             Supplier
           </a>
           <ul class="dropdown-menu" aria-labelledby="pattientwise-report">
@@ -258,8 +284,14 @@
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-receipt"></i>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            ><i class="fa-solid fa-receipt"></i>
             Receipts & Payments
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -283,8 +315,14 @@
         </li>
         <!-- //Master -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-table"></i>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            ><i class="fa-solid fa-table"></i>
             Master
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -316,8 +354,14 @@
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-boxes-stacked"></i>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            ><i class="fa-solid fa-boxes-stacked"></i>
             Product
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -338,8 +382,14 @@
         </li>
         <!-- //EOD -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-users"></i>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            ><i class="fa fa-users"></i>
             Admin
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -365,7 +415,9 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" (click)="logout()"><i class="fa-solid fa-power-off"></i>Logout</a>
+          <a class="nav-link" (click)="logout()"
+            ><i class="fa-solid fa-power-off"></i>Logout</a
+          >
         </li>
       </ul>
     </div>
