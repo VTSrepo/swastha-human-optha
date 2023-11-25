@@ -49,9 +49,9 @@ import { ExportReportComponent } from './export-report/export-report.component';
 import { InvoicePaymentReportComponent } from './invoice-payment-report/invoice-payment-report.component';
 import { InvoiceProductReportComponent } from './invoice-product-report/invoice-product-report.component';
 import { PatientVisit360ViewComponent } from './patient-visit360-view/patient-visit360-view.component';
-//import { PetRegistrationComponent } from './pet-registration/pet-registration.component';
-import { PetConsulationComponent } from './pet-consulation/pet-consulation.component';
-import { PetDynamicHomeComponent } from './pet-dynamic-home/pet-dynamic-home.component';
+
+
+
 
 
 const routes: Routes = [
@@ -255,14 +255,6 @@ const routes: Routes = [
     component: PatientVisit360ViewComponent
   },
   
-  {
-    path: 'pet-consultation-home',
-    component: PetConsulationComponent,
-  },
-  {
-    path: 'pet-dynamic-home',
-    component: PetDynamicHomeComponent,
-  },
 
 
 ];

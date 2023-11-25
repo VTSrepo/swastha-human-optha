@@ -112,17 +112,13 @@ import { GlassPrescriptionComponent } from './glass-prescription/glass-prescript
 import { IntraOcularPressureComponent } from './intra-ocular-pressure/intra-ocular-pressure.component';
 import { DiagnosisAndAdviceComponent } from './diagnosis-and-advice/diagnosis-and-advice.component';
 import { ExaminationComponent } from './examination/examination.component';
-import { VetConsultSectionComponent } from './vet-consult-section/vet-consult-section.component';
-import { MultiselectComponent } from './multiselect/multiselect.component';
-//import { PetRegistrationComponent } from './pet-registration/pet-registration.component';
-import { PetHistoryComponent } from './pet-history/pet-history.component';
 
-import { PetVisit360ViewComponent } from './pet-visit360-view/pet-visit360-view.component';
+import { MultiselectComponent } from './multiselect/multiselect.component';
+
 import { ViewPetFieldImage } from './utilities/pet-section-field-image-view/pet-section-field-image-view.component';
 import { ImageDrawingModule } from 'ngx-image-drawing';
-import { PetConsulationComponent } from './pet-consulation/pet-consulation.component';
-import { PetDynamicHomeComponent } from './pet-dynamic-home/pet-dynamic-home.component';
-import { PetVitalParameterComponent } from './pet-vital-parameter/pet-vital-parameter.component';
+//import { PetConsulationComponent } from './pet-consulation/pet-consulation.component';
+//import { PetDynamicHomeComponent } from './pet-dynamic-home/pet-dynamic-home.component';
 
 @NgModule({
   declarations: [
@@ -224,17 +220,10 @@ import { PetVitalParameterComponent } from './pet-vital-parameter/pet-vital-para
     GlassPrescriptionComponent,
     IntraOcularPressureComponent,
     DiagnosisAndAdviceComponent,
-    ExaminationComponent,
-    VetConsultSectionComponent,
+    ExaminationComponent,    
     MultiselectComponent,
 
-    PetHistoryComponent,
-    
-    PetVisit360ViewComponent,
     ViewPetFieldImage,
-    PetDynamicHomeComponent,
-    PetConsulationComponent,
-    PetVitalParameterComponent,
   ],
   imports: [
     BrowserModule,
