@@ -287,115 +287,6 @@
       </button>
     </mat-expansion-panel>
 
-    <!-- Dialysis Notes -->
-    <mat-expansion-panel
-      hideToggle
-      class="margin-20b doc-consult-expansion-container"
-      *ngIf="aptObj.dept_id === 'D0001'"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title> Dialysis </mat-panel-title>
-        <mat-panel-description> </mat-panel-description>
-      </mat-expansion-panel-header>
-      <div class="error-container" *ngIf="!visit_no">
-        Please save doctor notes to save dialysis notes
-      </div>
-      <label class="d-block"
-        >Visit#: {{ currentPatientDialysisDetail.visit_no }}</label
-      >
-      <label class="d-block"
-        >Visit Date:
-        {{
-          currentPatientDialysisDetail.prescription_date | date : "dd-MM-yyyy"
-        }}</label
-      >
-      <label for="prevDialysisHistory" class="form-label margin-20t"
-        >Previous History</label
-      >
-
-      <textarea
-        readonly
-        class="form-control"
-        id="prevDialysisHistory"
-        rows="10"
-        [(ngModel)]="currentPatientDialysisDetail.dialysis_notes"
-      ></textarea>
-      <ul class="pagination">
-        <li
-          class="page-item"
-          [ngClass]="{ disabled: recordIndexDialysis === 0 }"
-        >
-          <a class="page-link" (click)="prevDialysisItem()">Previous</a>
-        </li>
-        <li
-          class="page-item"
-          [ngClass]="{
-            disabled:
-              recordIndexDialysis === undefined ||
-              recordIndexDialysis === getLastDialysisRecordIndex()
-          }"
-        >
-          <a class="page-link" (click)="nextDialysisItem()">Next</a>
-        </li>
-      </ul>
-
-      <label for="exampleFormControlTextarea1" class="form-label margin-20t"
-        >Dialysis Notes</label
-      >
-      <textarea
-        class="form-control"
-        [(ngModel)]="dialysisNotes"
-        id="dialysisNotes"
-        rows="10"
-      ></textarea>
-      <button
-        type="button"
-        [disabled]="!visit_no"
-        class="btn btn-primary margin-20t"
-        (click)="saveDialysisNotes()"
-      >
-        Save
-      </button>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel
-      hideToggle
-      class="margin-20b doc-consult-expansion-container"
-      *ngIf="aptObj.dept_id !== 'D0004'"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title> Previous Visit Details </mat-panel-title>
-        <mat-panel-description> </mat-panel-description>
-      </mat-expansion-panel-header>
-      <div *ngIf="patientHistory">
-        <app-prev-vist-details
-          [tableData]="patientHistory"
-        ></app-prev-vist-details>
-      </div>
-    </mat-expansion-panel>
-
-    <!-- Opthal Visual paramaters tab -->
-    <mat-expansion-panel
-      hideToggle
-      class="margin-20b doc-consult-expansion-container"
-      *ngIf="aptObj.dept_id === 'D0002'"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title> Visual Acuity </mat-panel-title>
-        <mat-slide-toggle
-          [checked]="isActiveVisual"
-          disabled
-        ></mat-slide-toggle>
-        <mat-panel-description> </mat-panel-description>
-      </mat-expansion-panel-header>
-      <app-visual-acuity
-        [visit_no]="visit_no"
-        [visit_date]="visit_date"
-        [headerDetail]="headerDetail"
-        (isActiveVisual)="isEmitActiveVisual($event)"
-      ></app-visual-acuity>
-    </mat-expansion-panel>
-
     <!-- Opthal Objective Refraction tab -->
     <mat-expansion-panel
       hideToggle
@@ -414,74 +305,6 @@
         (isActivePGP)="isEmitActivePGP($event)"
       >
       </app-present-glass-power>
-    </mat-expansion-panel>
-
-    <!-- Opthal Objective Refraction tab -->
-    <mat-expansion-panel
-      hideToggle
-      class="margin-20b doc-consult-expansion-container"
-      *ngIf="aptObj.dept_id === 'D0002'"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title> Objective Refraction </mat-panel-title>
-        <mat-slide-toggle
-          [checked]="isActiveObjective"
-          disabled
-        ></mat-slide-toggle>
-        <mat-panel-description> </mat-panel-description>
-      </mat-expansion-panel-header>
-      <app-objective-refraction
-        [visit_no]="visit_no"
-        [visit_date]="visit_date"
-        [headerDetail]="headerDetail"
-        (isActiveObjective)="isEmitActiveObjective($event)"
-      ></app-objective-refraction>
-    </mat-expansion-panel>
-
-    <!-- Opthal Subjective Acceptance tab -->
-    <mat-expansion-panel
-      hideToggle
-      class="margin-20b doc-consult-expansion-container"
-      *ngIf="aptObj.dept_id === 'D0002'"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title> Subjective Acceptance </mat-panel-title>
-        <mat-slide-toggle
-          [checked]="isActiveSubjective"
-          disabled
-        ></mat-slide-toggle>
-        <mat-panel-description> </mat-panel-description>
-      </mat-expansion-panel-header>
-      <app-subject-acceptance
-        [visit_no]="visit_no"
-        [visit_date]="visit_date"
-        [headerDetail]="headerDetail"
-        (isActiveSubjective)="isEmitActiveSubjective($event)"
-      >
-      </app-subject-acceptance>
-    </mat-expansion-panel>
-
-    <!-- Opthal Examination tab -->
-    <mat-expansion-panel
-      hideToggle
-      class="margin-20b doc-consult-expansion-container"
-      *ngIf="aptObj.dept_id === 'D0002'"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title> Examination </mat-panel-title>
-        <mat-slide-toggle
-          [checked]="isActiveExamination"
-          disabled
-        ></mat-slide-toggle>
-        <mat-panel-description> </mat-panel-description>
-      </mat-expansion-panel-header>
-      <app-examination
-        [visit_no]="visit_no"
-        [visit_date]="visit_date"
-        [headerDetail]="headerDetail"
-        (isActiveExamination)="isEmitActiveExamination($event)"
-      >
-      </app-examination>
     </mat-expansion-panel>
 
     <!-- Opthal Intra Ocular Pressure tab -->
@@ -610,46 +433,24 @@
     </mat-expansion-panel>
 
     
-
-    
-
-    
-
-    <!-- pharma -->
+    <!-- Opthal Biometry tab -->
     <mat-expansion-panel
       hideToggle
       class="margin-20b doc-consult-expansion-container"
+      *ngIf="aptObj.dept_id === 'D0002'"
     >
       <mat-expansion-panel-header>
-        <mat-panel-title> Medicine </mat-panel-title>
-        <mat-slide-toggle
-          [checked]="isActiveMedicine"
-          disabled
-        ></mat-slide-toggle>
+        <mat-panel-title> Biometry </mat-panel-title>
+        <mat-slide-toggle [checked]="isActiveBiometry" disabled></mat-slide-toggle>
         <mat-panel-description> </mat-panel-description>
       </mat-expansion-panel-header>
-      <app-med-prescription
+      <app-biometry
         [visit_no]="visit_no"
+        [visit_date]="visit_date"
         [headerDetail]="headerDetail"
-        (isActiveMedicine)="isEmitActiveMedicine($event)"
-      ></app-med-prescription>
-    </mat-expansion-panel>
-
-    <!-- Lab -->
-    <mat-expansion-panel
-      hideToggle
-      class="margin-20b doc-consult-expansion-container"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title> Lab </mat-panel-title>
-        <mat-slide-toggle [checked]="isActiveLab" disabled></mat-slide-toggle>
-        <mat-panel-description> </mat-panel-description>
-      </mat-expansion-panel-header>
-      <app-lab-prescription
-        [visit_no]="visit_no"
-        [headerDetail]="headerDetail"
-        (isActiveLab)="isEmitActiveLab($event)"
-      ></app-lab-prescription>
+        (isActiveGP)="isEmitActiveBiometry($event)"
+      >
+      </app-biometry>
     </mat-expansion-panel>
   </div>
   <div class="row"></div>

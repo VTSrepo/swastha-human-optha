@@ -126,6 +126,7 @@ export class DocConsultationComponent implements OnInit {
   showPreviousDocNotes:boolean = false;
   isActiveTreatment:boolean = false;
   isActivePetDiagonsis:boolean = false;
+  isActiveBiometry: boolean = false;
 
 
   // [{khi_code:'bp',khi_desc:'Bloop pressure'}, {khi_code:'height',khi_desc:'Height'}];
@@ -534,6 +535,10 @@ export class DocConsultationComponent implements OnInit {
 
   isEmitActivePetDiagonsis(element: any) {
     this.isActivePetDiagonsis = element;
+  }
+
+  isEmitActiveBiometry(element: any) {
+    this.isActiveBiometry = element;
   }
 
   vetMetaData = [];

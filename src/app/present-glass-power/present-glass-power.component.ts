@@ -101,8 +101,10 @@ export class PresentGlassPowerComponent {
       "lens_type": pgpForm.lens_type.value,
       "lens_coating": pgpForm.lens_coating.value
     }
+    // localStorage.setItem('PGP', JSON.stringify(params));
     this.pgpService.createPgp(params).subscribe(data => {
       console.log(data);
+      localStorage.setItem('PGP', JSON.stringify(data));
       this.pgpBoolean = true;
       this.emitPGP();
       this.dialog.open(InfoDialogComponent, {

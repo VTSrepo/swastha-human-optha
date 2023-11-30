@@ -117,6 +117,7 @@ import { MultiselectComponent } from './multiselect/multiselect.component';
 
 import { ViewPetFieldImage } from './utilities/pet-section-field-image-view/pet-section-field-image-view.component';
 import { ImageDrawingModule } from 'ngx-image-drawing';
+import { BiometryComponent } from './biometry/biometry.component';
 //import { PetConsulationComponent } from './pet-consulation/pet-consulation.component';
 //import { PetDynamicHomeComponent } from './pet-dynamic-home/pet-dynamic-home.component';
 
@@ -224,6 +225,7 @@ import { ImageDrawingModule } from 'ngx-image-drawing';
     MultiselectComponent,
 
     ViewPetFieldImage,
+      BiometryComponent,
   ],
   imports: [
     BrowserModule,

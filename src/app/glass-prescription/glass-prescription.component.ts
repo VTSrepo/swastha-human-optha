@@ -230,4 +230,13 @@ export class GlassPrescriptionComponent {
         this.gpBoolean
       );
     }
+
+    copyPGP() {
+      var pgpObject = localStorage.getItem('PGP');
+      //@ts-ignore
+      let pgpValue = JSON.parse(pgpObject);
+      this.glassPrescriptionForm.patchValue(pgpValue);
+      this.glassPrescriptionForm.controls.typeof_lens.setValue(pgpValue.lens_type);
+      this.glassPrescriptionForm.controls.contact_lens.setValue(pgpValue.lens_coating);
+    }
 }
