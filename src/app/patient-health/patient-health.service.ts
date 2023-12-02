@@ -17,8 +17,10 @@ export class PatientHealthService {
     
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.get(environment.apiUrl + 'patientreport/' + org_id + '/' + branch_id + '/' +patient_id,
-      { headers: headers })
+    return this.http.get(environment.apiUrl + 'D0002patientreport/' + org_id + '/' + branch_id + '/' + patient_id,
+    { headers: headers })
+    // return this.http.get(environment.apiUrl + 'patientreport/' + org_id + '/' + branch_id + '/' +patient_id,
+    //   { headers: headers })
   }
  
   getPatientHeader(patient_id: string, branch_id: any):Observable<any>{

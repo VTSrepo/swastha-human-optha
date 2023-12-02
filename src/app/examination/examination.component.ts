@@ -39,6 +39,12 @@ export class ExaminationComponent {
   showVisitDate: any;
   showVisitNo: any;
   examinationBoolean:boolean = false;
+  examList = ['ant_eyelids', 'ant_eyelashes', 'ant_conjuctiva', 'ant_cornea', 'ant_champer_depth', 'ant_iris', 'ant_pupil', 'ant_lens', 'ant_sclera', 'ant_eyelids', 'ant_eyelashes', 'ant_conjuctiva', 'ant_cornea', 'ant_champer_depth', 'ant_iris', 
+              'ant_pupil', 'ant_lens', 'ant_sclera', 'ant_eyelids_remarks', 'ant_eyelashes_remarks', 'ant_conjuctiva_remarks', 'ant_cornea_remarks', 'ant_champer_depth_remarks', 'ant_iris_remarks', 'ant_pupil_remarks', 'ant_lens_remarks', 'ant_sclera_remarks', 
+              'ant_eyelids_remarks', 'ant_eyelashes_remarks', 'ant_conjuctiva_remarks', 'ant_cornea_remarks', 'ant_champer_depth_remarks', 'ant_iris_remarks', 'ant_pupil_remarks', 'ant_lens_remarks', 'ant_sclera_remarks', 'post_vitreous', 'post_media', 'post_opticdisc', 
+              'post_bloodvessels', 'post_macula', 'post_fundus', 'post_cdr', 'post_others', 'post_vitreous', 'post_media', 'post_opticdisc', 'post_bloodvessels', 'post_macula', 'post_fundus', 'post_cdr', 'post_others', 'post_vitreous_remarks', 'post_media_remarks', 'post_opticdisc_remarks',
+              'post_bloodvessels_remarks', 'post_macula_remarks', 'post_fundus_remarks', 'post_cdr_remarks', 'post_others_remarks', 'post_vitreous_remarks', 'post_media_remarks', 'post_opticdisc_remarks', 'post_bloodvessels_remarks', 'post_macula_remarks', 'post_fundus_remarks', 'post_cdr_remarks',
+              'post_others_remarks']
   
   constructor(
     private examService: ExaminationService,
@@ -206,6 +212,10 @@ export class ExaminationComponent {
   setCurrentNotesAfterChange() {
     this.recordIndex = this.getLastRecordIndex() - this.prevCounter;
     this.examForm.patchValue(this.examDetailData[this.recordIndex]); // give us back the item of where we are now
+    this.showVisitNo = this.examDetailData[this.recordIndex].visit_no;
+    this.showVisitDate = this.utility.convertDate(
+      this.examDetailData[this.recordIndex].visit_date
+    );
   }
 
   displayPrevious() {
@@ -328,5 +338,17 @@ export class ExaminationComponent {
     this.isActiveExamination.emit(
       this.examinationBoolean
     );
+  }
+
+  rightToLeft() {
+    this.examList.forEach(element => {
+      this.examForm.controls[element+'_le'].setValue(this.examForm.controls[element+'_re'].value);
+    });
+  }
+
+  leftToRight() {
+    this.examList.forEach(element => {
+      this.examForm.controls[element+'_re'].setValue(this.examForm.controls[element+'_le'].value);
+    });
   }
 }

@@ -122,6 +122,10 @@ export class ObjectiveRefractionComponent {
   setCurrentNotesAfterChange() {
     this.recordIndex = this.getLastRecordIndex() - this.prevCounter;
     this.objectiveRefractionForm.patchValue(this.objectDetailData[this.recordIndex]);
+    this.showVisitNo = this.objectDetailData[this.recordIndex].visit_no;
+    this.showVisitDate = this.utility.convertDate(
+      this.objectDetailData[this.recordIndex].visit_date
+    );
   }
 
   displayPrevious() {

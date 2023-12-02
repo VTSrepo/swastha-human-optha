@@ -84,7 +84,7 @@ export class PatientScheduleComponent implements OnInit {
   }
   changeMonth() {
     this.tableData = [];
-    this.getInsuSummay();
+    // this.getInsuSummay();
   }
   getInsuSummay() {
     let bu = this.insSummaryForm.value.bu;

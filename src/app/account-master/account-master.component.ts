@@ -59,7 +59,6 @@ export class AccountMasterComponent implements OnInit {
         width: '400px',
         data: 'Account Master Created Successfully!!!'
       })
-      this.accForm.reset();
       this.fetchData.length = 0;
       this.isShowEdit = false;
     })
@@ -81,7 +80,6 @@ export class AccountMasterComponent implements OnInit {
         width: '400px',
         data: 'Account Master Updated Successfully!!!'
       })
-      this.accForm.reset();
       this.fetchData.length = 0;
       this.isShowEdit = false;
     })
@@ -104,7 +102,7 @@ export class AccountMasterComponent implements OnInit {
   }
   
   clear() {
-    this.accForm.reset();
+    // this.accForm.reset();
     this.fetchData.length = 0;
     this.isShowEdit = false;
   }
@@ -112,6 +110,6 @@ export class AccountMasterComponent implements OnInit {
   clearInp() {
     this.accForm.controls.acc_code.setValue(null);
     this.accForm.controls.acc_desc.setValue(null);
-    this.accForm.controls.status.setValue(null);
+    // this.accForm.controls.status.setValue(null);
   }
 }

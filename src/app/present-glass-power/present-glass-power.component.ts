@@ -150,6 +150,10 @@ export class PresentGlassPowerComponent {
   setCurrentNotesAfterChange() {
     this.recordIndex = this.getLastRecordIndex() - this.prevCounter;
     this.presentGlassPowerForm.patchValue(this.pgpDetailData[this.recordIndex]);
+    this.showVisitNo = this.pgpDetailData[this.recordIndex].visit_no;
+    this.showVisitDate = this.utility.convertDate(
+      this.pgpDetailData[this.recordIndex].visit_date
+    );
   }
 
   displayPrevious() {
@@ -193,6 +197,7 @@ export class PresentGlassPowerComponent {
     this.presentGlassPowerForm.controls.sph_near_le.setValue(this.presentGlassPowerForm.controls.sph_near_re.value);
     this.presentGlassPowerForm.controls.cyl_near_le.setValue(this.presentGlassPowerForm.controls.cyl_near_re.value);
     this.presentGlassPowerForm.controls.axis_near_le.setValue(this.presentGlassPowerForm.controls.axis_near_re.value);
+    this.presentGlassPowerForm.controls.sph_add_le.setValue(this.presentGlassPowerForm.controls.sph_add_re.value);
   }
 
   leftToRight() {
@@ -202,6 +207,7 @@ export class PresentGlassPowerComponent {
     this.presentGlassPowerForm.controls.sph_near_re.setValue(this.presentGlassPowerForm.controls.sph_near_le.value);
     this.presentGlassPowerForm.controls.cyl_near_re.setValue(this.presentGlassPowerForm.controls.cyl_near_le.value);
     this.presentGlassPowerForm.controls.axis_near_re.setValue(this.presentGlassPowerForm.controls.axis_near_le.value);
+    this.presentGlassPowerForm.controls.sph_add_re.setValue(this.presentGlassPowerForm.controls.sph_add_le.value);
   }
 
   emitPGP() {

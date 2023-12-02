@@ -33,6 +33,7 @@ export class DiagnosisAndAdviceComponent {
   diagonsisBoolean:boolean = false;
 
   constructor(private dialog: MatDialog,
+              private utility: UtilityService,
               private formBuilder: FormBuilder, 
               private daService: DiagnosisAndAdviceService,
               private utils: UtilityService) { }
@@ -120,6 +121,10 @@ export class DiagnosisAndAdviceComponent {
     setCurrentNotesAfterChange() {
       this.recordIndex = this.getLastRecordIndex() - this.prevCounter;
       this.diagnosisForm.patchValue(this.subjectDetailData[this.recordIndex]);
+      this.showVisitNo = this.subjectDetailData[this.recordIndex].visit_no;
+      this.showVisitDate = this.utility.convertDate(
+        this.subjectDetailData[this.recordIndex].visit_date
+      );
     }
   
     displayPrevious() {

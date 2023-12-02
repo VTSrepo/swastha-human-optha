@@ -129,6 +129,10 @@ export class VisualAcuityComponent {
   setCurrentNotesAfterChange() {
     this.recordIndex = this.getLastRecordIndex() - this.prevCounter;
     this.visualAcuityForm.patchValue(this.visualDetailData[this.recordIndex]);
+    this.showVisitNo = this.visualDetailData[this.recordIndex].visit_no;
+    this.showVisitDate = this.utility.convertDate(
+      this.visualDetailData[this.recordIndex].visit_date
+    );
   }
 
   displayPrevious() {

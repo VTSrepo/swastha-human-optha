@@ -17,8 +17,10 @@ export class PatientVisit360ViewService {
     
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.get(environment.apiUrl + 'patientvisit360report/' + org_id + '/' + branch_id + '/' + patient_id + '?visit_no=' + visitNo + '&' + 'visit_date=' + visitDate,
+    return this.http.get(environment.apiUrl + 'D0002patientreport/' + org_id + '/' + branch_id + '/' + patient_id,
       { headers: headers })
+    // return this.http.get(environment.apiUrl + 'patientvisit360report/' + org_id + '/' + branch_id + '/' + patient_id + '?visit_no=' + visitNo + '&' + 'visit_date=' + visitDate,
+    //   { headers: headers })
   }
  
   getPatientHeader(patient_id: string, branch_id: any):Observable<any>{

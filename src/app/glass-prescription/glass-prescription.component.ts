@@ -165,6 +165,10 @@ export class GlassPrescriptionComponent {
     setCurrentNotesAfterChange() {
       this.recordIndex = this.getLastRecordIndex() - this.prevCounter;
       this.glassPrescriptionForm.patchValue(this.subjectDetailData[this.recordIndex]);
+      this.showVisitNo = this.subjectDetailData[this.recordIndex].visit_no;
+      this.showVisitDate = this.utility.convertDate(
+        this.subjectDetailData[this.recordIndex].visit_date
+      );
     }
   
     displayPrevious() {
@@ -212,6 +216,7 @@ export class GlassPrescriptionComponent {
       this.glassPrescriptionForm.controls.cyl_near_le.setValue(this.glassPrescriptionForm.controls.cyl_near_re.value);
       this.glassPrescriptionForm.controls.axis_near_le.setValue(this.glassPrescriptionForm.controls.axis_near_re.value);
       this.glassPrescriptionForm.controls.va_near_le.setValue(this.glassPrescriptionForm.controls.va_near_re.value);
+      this.glassPrescriptionForm.controls.sph_add_le.setValue(this.glassPrescriptionForm.controls.sph_add_re.value);
     }
 
     leftToRight() {
@@ -223,6 +228,7 @@ export class GlassPrescriptionComponent {
       this.glassPrescriptionForm.controls.cyl_near_re.setValue(this.glassPrescriptionForm.controls.cyl_near_le.value);
       this.glassPrescriptionForm.controls.axis_near_re.setValue(this.glassPrescriptionForm.controls.axis_near_le.value);
       this.glassPrescriptionForm.controls.va_near_re.setValue(this.glassPrescriptionForm.controls.va_near_le.value);
+      this.glassPrescriptionForm.controls.sph_add_re.setValue(this.glassPrescriptionForm.controls.sph_add_le.value);
     }
 
     emitGP() {

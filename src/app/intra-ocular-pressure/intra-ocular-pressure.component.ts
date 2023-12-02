@@ -66,7 +66,7 @@ export class IntraOcularPressureComponent {
           data: 'Intra Ocular Pressure Saved Successfully!!!'
         })
       })
-      this.iopList.length = 0
+      // this.iopList.length = 0
     }
   
     getIopDetail() {
@@ -108,6 +108,10 @@ export class IntraOcularPressureComponent {
     setCurrentNotesAfterChange() {
       this.recordIndex = this.getLastRecordIndex() - this.prevCounter;
       this.intraOcularPressureForm.patchValue(this.subjectDetailData[this.recordIndex]);
+      this.showVisitNo = this.subjectDetailData[this.recordIndex].visit_no;
+      this.showVisitDate = this.utility.convertDate(
+        this.subjectDetailData[this.recordIndex].visit_date
+      );
     }
   
     displayPrevious() {

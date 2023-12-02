@@ -145,6 +145,10 @@ export class SubjectAcceptanceComponent {
   setCurrentNotesAfterChange() {
     this.recordIndex = this.getLastRecordIndex() - this.prevCounter;
     this.subjectAcceptanceForm.patchValue(this.subjectDetailData[this.recordIndex]);
+    this.showVisitNo = this.subjectDetailData[this.recordIndex].visit_no;
+    this.showVisitDate = this.utility.convertDate(
+      this.subjectDetailData[this.recordIndex].visit_date
+    );
   }
 
   displayPrevious() {
@@ -192,6 +196,7 @@ export class SubjectAcceptanceComponent {
     this.subjectAcceptanceForm.controls.cyl_near_le.setValue(this.subjectAcceptanceForm.controls.cyl_near_re.value);
     this.subjectAcceptanceForm.controls.axis_near_le.setValue(this.subjectAcceptanceForm.controls.axis_near_re.value);
     this.subjectAcceptanceForm.controls.va_near_le.setValue(this.subjectAcceptanceForm.controls.va_near_re.value);
+    this.subjectAcceptanceForm.controls.sph_add_le.setValue(this.subjectAcceptanceForm.controls.sph_add_re.value);
   }
 
   leftToRight() {
@@ -203,6 +208,7 @@ export class SubjectAcceptanceComponent {
     this.subjectAcceptanceForm.controls.cyl_near_re.setValue(this.subjectAcceptanceForm.controls.cyl_near_le.value);
     this.subjectAcceptanceForm.controls.axis_near_re.setValue(this.subjectAcceptanceForm.controls.axis_near_le.value);
     this.subjectAcceptanceForm.controls.va_near_re.setValue(this.subjectAcceptanceForm.controls.va_near_le.value);
+    this.subjectAcceptanceForm.controls.sph_add_re.setValue(this.subjectAcceptanceForm.controls.sph_add_le.value);
   }
 
   emitSubjective() {

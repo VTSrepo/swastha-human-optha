@@ -18,6 +18,10 @@
         </ul>
     </div>
 </div>
+<div class="col-md-12 txt-align">
+    <button mat-raised-button color="primary" class="mar-right" (click)="rightToLeft()" [disabled]="showPreviousTable">Right to Left</button>
+    <button mat-raised-button color="accent" (click)="leftToRight()" [disabled]="showPreviousTable">Left to Right</button>
+</div>
 <form [formGroup]="examForm">
     <div class="row margin-20l custom-card">
             <div class="col-md-4 pg-10">
