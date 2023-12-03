@@ -17,6 +17,7 @@
         </ul>
     </div>
     <div class="col-md-8 txt-align">
+        <button mat-raised-button class="mar-right bg-g" (click)="copyPGP()">Copy from PGP</button>
         <button mat-raised-button color="primary" class="mar-right" (click)="rightToLeft()" [disabled]="showPreviousTable">Right to Left</button>
         <button mat-raised-button color="accent" (click)="leftToRight()" [disabled]="showPreviousTable">Left to Right</button>
     </div>

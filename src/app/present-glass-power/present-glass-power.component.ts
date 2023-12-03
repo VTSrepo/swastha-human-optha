@@ -103,6 +103,7 @@ export class PresentGlassPowerComponent {
     }
     this.pgpService.createPgp(params).subscribe(data => {
       console.log(data);
+      localStorage.setItem('PGP', JSON.stringify(data));
       this.pgpBoolean = true;
       this.emitPGP();
       this.dialog.open(InfoDialogComponent, {
