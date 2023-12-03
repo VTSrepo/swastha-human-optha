@@ -1,36 +1,38 @@
 <div *ngIf="!isShowPatientDetails">
-  <section class="example-container mat-elevation-z8" tabindex="0">
-    
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mat-mdc-table">
+    <section class="example-container mat-elevation-z8" tabindex="0">
 
-      <ng-container matColumnDef="visit_no">
-        <th mat-header-cell *matHeaderCellDef> Visit No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.visit_no}} </td>
-      </ng-container>
-    
-      <ng-container matColumnDef="visit_date">
-        <th mat-header-cell *matHeaderCellDef> Visit Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.visit_date | date: 'dd-MM-yyyy'}} </td>
-      </ng-container>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mat-mdc-table">
 
-      <ng-container matColumnDef="view">
-        <th mat-header-cell *matHeaderCellDef> View </th>
-        <td mat-cell *matCellDef="let element"> <mat-icon (click)="goToPatientVisit(element)">visibility</mat-icon> </td>
-      </ng-container>
-    
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-</section>
+            <ng-container matColumnDef="visit_no">
+                <th mat-header-cell *matHeaderCellDef> Visit No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.visit_no}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="visit_date">
+                <th mat-header-cell *matHeaderCellDef> Visit Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.visit_date | date: 'dd-MM-yyyy'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="view">
+                <th mat-header-cell *matHeaderCellDef> View </th>
+                <td mat-cell *matCellDef="let element"> <mat-icon
+                        (click)="goToPatientVisit(element)">visibility</mat-icon> </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </section>
 </div>
 
 <div *ngIf="isShowPatientDetails">
-  <div class="container">
-    <div class="txt-left">
-        <button type="button" class="btn btn-clr mar20t" [useExistingCss]="true" id="print-to-pdf" printSectionId="print-section"  ngxPrint >Print to Pdf</button>
-        <button type="button" class="btn btn-clr mar20t margin-10l" (click)="back()" >Back</button>
-    </div>
-    <div id="print-section">
+    <div class="container">
+        <div class="txt-left">
+            <button type="button" class="btn btn-clr mar20t" [useExistingCss]="true" id="print-to-pdf"
+                printSectionId="print-section" ngxPrint>Print to Pdf</button>
+            <button type="button" class="btn btn-clr mar20t margin-10l" (click)="back()">Back</button>
+        </div>
+        <div id="print-section">
             <div class="space-10"></div>
             <h5>Visit Information</h5>
             <mat-card *ngIf="patientData">
@@ -41,6 +43,90 @@
                     <div class="col-6">Prev Visit Date: {{patientData.prev_visit_date | date: 'dd-MM-yyyy'}}</div>
                 </mat-card-content>
             </mat-card>
+            <div class="space-10"></div>
+            <div class="mat-card" *ngIf="patientData">
+                <h5>History</h5>
+                <div>
+                    <div class="row margin-20l">
+                        <div class="col-md-8">
+                            <label class="form-label margin-20t">Chief Complaint: </label>
+                            {{patientData.main_complaint}}
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label margin-20t">Since When:</label>
+                            {{patientData.main_complaint_from | date:'dd-MM-yyyy'}}
+                        </div>
+                    </div>
+
+                    <div class="row margin-20l">
+                        <div class="col-md-8">
+                            <label class="form-label margin-20t">History of Current
+                                Compliant:</label>{{patientData.curr_complaint}}
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label margin-20t">Since When:</label>
+                            {{patientData.curr_complaint_from | date:'dd-MM-yyyy'}}
+                        </div>
+                    </div>
+
+                    <div class="row margin-20l">
+                        <div class="col-md-10">
+                            <label class="form-label margin-20t">History of Past illness /
+                                systemic:</label>{{patientData.past_illness_systemic}}
+                        </div>
+                    </div>
+
+                    <div class="row margin-20l">
+                        <div class="col-md-4">
+                            <label class="form-label margin-20t">Any Family History:</label>
+                            {{patientData.fam_history}}
+                        </div>
+                        <div class="col-md-8">
+                            <label class="form-label margin-20t">Family History:</label>
+                            {{patientData.fam_history_dtl}}
+                        </div>
+                    </div>
+
+                    <div class="row margin-20l">
+                        <div class="col-md-8">
+                            <label class="form-label margin-20t">Surgeries / Lasers:</label>
+                            {{patientData.surg_laser}}
+                        </div>
+                    </div>
+
+                    <div class="row margin-20l">
+                        <div class="col-md-8">
+                            <label class="form-label margin-20t">Allergies:</label>
+                            {{patientData.allergies}}
+                        </div>
+                    </div>
+
+                    <div class="row margin-20l">
+                        <div class="col-md-4">
+                            <label class="form-label margin-20t">Are you under curent
+                                treatment:</label>{{patientData.curr_treatment}}
+                        </div>
+                        <div class="col-md-8">
+                            <label class="form-label margin-20t">Current Treatment
+                                Details:</label>{{patientData.curr_treatment_dtl}}
+                        </div>
+                    </div>
+
+                    <div class="row margin-20l">
+                        <div class="col-md-4">
+                            <label class="form-label margin-20t">Are you under any
+                                medication:</label>{{patientData.medication}}
+                        </div>
+                    </div>
+
+                    <div class="row margin-20l">
+                        <div class="col-md-12">
+                            <label class="form-label margin-20t">Remarks:</label>
+                            {{patientData.docNotes}}
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="space-10"></div>
             <div class="mat-card" *ngIf="patientData?.health_lastvisit">
                 <h5>Vital Parameter</h5>
@@ -67,7 +153,285 @@
                     </tbody>
                 </table>
             </div>
+
             <div class="space-10"></div>
+            <div class="mat-card" *ngIf="patientData?.present_glass_power">
+                <h5>Present Glass Power</h5>
+                <div *ngFor="let pgpData of patientData.present_glass_power">
+                    <div class="row margin-20l">
+                        <div class="col-6">
+                            <table class="table table-bordered">
+                                <thead class="">
+                                    <tr>
+                                        <th scope="colgroup" class="txt-center">Right eye</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <table class="table table-bordered">
+                                        <thead class="">
+                                            <tr>
+                                                <th rowspan="2">Distance</th>
+                                                <th class="txt-center">SPH</th>
+                                                <th class="txt-center">CYL</th>
+                                                <th class="txt-center">AXIS</th>
+                                            </tr>
+                                            <tr>
+                                                <td>{{pgpData.sph_distance_re}}</td>
+                                                <td>{{pgpData.cyl_distance_re}}</td>
+                                                <td>{{pgpData.axis_distance_re}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Add</th>
+                                                <td>{{pgpData.sph_add_re}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th rowspan="2">Near</th>
+                                                <td>{{pgpData.sph_near_re}}</td>
+                                                <td>{{pgpData.cyl_near_re}}</td>
+                                                <td>{{pgpData.axis_near_re}}</td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-6">
+                            <table class="table table-bordered">
+                                <thead class="">
+                                    <tr>
+                                        <th scope="colgroup" class="txt-center">Left eye</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <table class="table table-bordered">
+                                        <thead class="">
+                                            <tr>
+                                                <th rowspan="2">Distance</th>
+                                                <th class="txt-center">SPH</th>
+                                                <th class="txt-center">CYL</th>
+                                                <th class="txt-center">AXIS</th>
+                                            </tr>
+                                            <tr>
+                                                <td>{{pgpData.sph_distance_le}}</td>
+                                                <td>{{pgpData.cyl_distance_le}}</td>
+                                                <td>{{pgpData.axis_distance_le}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Add</th>
+                                                <td>{{pgpData.sph_add_le}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th rowspan="2">Near</th>
+                                                <td>{{pgpData.sph_near_le}}</td>
+                                                <td>{{pgpData.cyl_near_le}}</td>
+                                                <td>{{pgpData.axis_near_le}}</td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="row pg-1 txt-center">
+                            <div class="col-md-4">
+                                <label class="form-label margin-20t">Lens material:</label>
+                                {{pgpData.lens_material}}
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label margin-20t">Type of Lense:</label>
+                                {{pgpData.lens_type}}
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label margin-20t">Coating:</label>
+                                {{pgpData.lens_coating}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-10"></div>
+            <div class="mat-card" *ngIf="patientData?.intra_ocular_pressure">
+                <h5>Intra Ocular Pressure</h5>
+                <div class="row margin-20l">
+                    <div class="row">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>IOP Type</th>
+                                    <th>Right Eye</th>
+                                    <th>Left Eye</th>
+                                    <th>Time</th>
+                                    <th>Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let iop of patientData.intra_ocular_pressure">
+                                    <td>{{iop.iop_type}}</td>
+                                    <td>{{iop.pressure_re}}</td>
+                                    <td>{{iop.pressure_le}}</td>
+                                    <td>{{iop.timer}}</td>
+                                    <td>{{iop.remarks}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="mat-card" *ngIf="patientData?.diagnosis_advice">
+                <h5>Diagnosis Advice</h5>
+                <div class="row margin-20l" *ngFor="let diagnosisData of patientData.diagnosis_advice">
+                    <table class="table table-bordered">
+                        <thead class="">
+                            <tr>
+                                <th scope="colgroup" class="txt-center">Right eye</th>
+                                <th scope="colgroup" class="txt-center">Left eye</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{diagnosisData.diagnosis_re}}</td>
+                                <td>{{diagnosisData.diagnosis_le}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Others</label>
+                        </div>
+                        <div class="col-md-9 margin-t">{{diagnosisData.others}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Systemic Diagnosis</label>
+                        </div>
+                        <div class="col-md-9 margin-t">{{diagnosisData.syst_diag}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Advice</label>
+                        </div>
+                        <div class="col-md-9 margin-t">{{diagnosisData.advise}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Follow-up</label>
+                        </div>
+                        <div class="col-md-9 margin-t display-flex">
+                            <div class="col-md-3">{{diagnosisData.followup_date}}</div>
+                            <div class="col-md-9">{{diagnosisData.followup_date}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="space-10"></div>
+            <div class="mat-card" *ngIf="patientData?.glass_prescription">
+                <h5>Glass Prescription</h5>
+                <div *ngFor="let glassData of patientData.glass_prescription">
+                    <div class="row margin-20l">
+                        <div class="col-6">
+                            <table class="table table-bordered">
+                                <thead class="">
+                                    <tr>
+                                        <th scope="colgroup" class="txt-center">Right eye</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <table class="table table-bordered">
+                                        <thead class="">
+                                            <tr>
+                                                <th rowspan="2">Distance</th>
+                                                <th class="txt-center">SPH</th>
+                                                <th class="txt-center">CYL</th>
+                                                <th class="txt-center">AXIS</th>
+                                                <th class="txt-center">VA</th>
+                                            </tr>
+                                            <tr>
+                                                <td>{{glassData.sph_distance_re}}</td>
+                                                <td>{{glassData.cyl_distance_re}}</td>
+                                                <td>{{glassData.axis_distance_re}}</td>
+                                                <td>{{glassData.va_distance_re}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Add</th>
+                                                <td>{{glassData.sph_add_re}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th rowspan="2">Near</th>
+                                                <td>{{glassData.sph_near_re}}</td>
+                                                <td>{{glassData.cyl_near_re}}</td>
+                                                <td>{{glassData.axis_near_re}}</td>
+                                                <td>{{glassData.va_near_re}}</td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-6">
+                            <table class="table table-bordered">
+                                <thead class="">
+                                    <tr>
+                                        <th scope="colgroup" class="txt-center">Left eye</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <table class="table table-bordered">
+                                        <thead class="">
+                                            <tr>
+                                                <th rowspan="2">Distance</th>
+                                                <th class="txt-center">SPH</th>
+                                                <th class="txt-center">CYL</th>
+                                                <th class="txt-center">AXIS</th>
+                                                <th class="txt-center">VA</th>
+                                            </tr>
+                                            <tr>
+                                                <td>{{glassData.sph_distance_le}}</td>
+                                                <td>{{glassData.cyl_distance_le}}</td>
+                                                <td>{{glassData.axis_distance_le}}</td>
+                                                <td>{{glassData.va_distance_le}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Add</th>
+                                                <td>{{glassData.sph_add_le}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th rowspan="2">Near</th>
+                                                <td>{{glassData.sph_near_le}}</td>
+                                                <td>{{glassData.cyl_near_le}}</td>
+                                                <td>{{glassData.axis_near_le}}</td>
+                                                <td>{{glassData.va_near_le}}</td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="row pg-1">
+                            <div class="col-md-4">
+                                <label class="form-label margin-20t">Lens material:</label>
+                                {{glassData.lens_material}}
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label margin-20t">Type of Lense:</label>
+                                {{glassData.typeof_lens}}
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label margin-20t">Coating:</label>
+                                {{glassData.contact_lens}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Remarks:</label>
+                                {{glassData.remarks}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="space-10"></div>
             <div class="mat-card" *ngIf="patientData?.test_lastvisit">
                 <h5>Tests Underwent</h5>
                 <table class="table table-bordered fs-medium">
@@ -96,89 +460,142 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </div> -->
             <div class="space-10"></div>
-            <div class="table-responsive-lg col-lg-12 mat-card" style="margin-top:20px" *ngIf="patientData && patientData.medicine_lastvisit">
+            <div class="table-responsive-lg col-lg-12 mat-card" style="margin-top:20px"
+                *ngIf="patientData && patientData.medicine_lastvisit">
                 <h5>Medicines recommended</h5>
                 <table class="table table-bordered fs-small">
                     <thead class="thead-dark table-header-background">
-                      <tr>
-                        <th  rowspan="2">#</th>
-                        <th rowspan="2">Product Name</th>
-                        <th colspan="2">Morning</th>
-                        <th colspan="2">Noon</th>
-                        <th colspan="2">Evening</th>
-                        <th colspan="2">Night</th>
-                        <th colspan="3">Adhoc</th>
-                        <th rowspan="2">Days</th>
-                        <th rowspan="2">Remarks</th>
-                      </tr>
-            
-                      <tr>
-                        <th>BF</th>
-                        <th>AF</th>
-                        <th>BF</th>
-                        <th>AF</th>
-                        <th>BF</th>
-                        <th>AF</th>
-                        <th>BF</th>
-                        <th>AF</th>
-                        <th>Notes</th>
-                        <th>BF</th>
-                        <th>AF</th>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let medicineData of patientData.medicine_lastvisit; let i=index">
-                        <td scope="row">{{i+1}}</td>
-                        <td>
-                            {{medicineData.product_name}}
-                        </td>
-            
-                        <td class="w-5">{{medicineData.morning_bf}}</td>            
-                        <td class="w-5">{{medicineData.morning_af}}</td> 
-                        
-                        <td class="w-5">{{medicineData.noon_bf}}</td> 
-                        <td class="w-5">{{medicineData.noon_af}}</td> 
-                        
-                        <td class="w-5">{{medicineData.evening_bf}}</td> 
-                        <td class="w-5">{{medicineData.evening_af}}</td> 
-            
-                        <td class="w-5">{{medicineData.night_bf}}</td> 
-                        <td class="w-5">{{medicineData.night_af}}</td> 
-            
-                        <td class="">{{medicineData.other_time_desc}}</td> 
-                        <td class="w-5">{{medicineData.other_time_bf}}</td> 
-                        <td class="w-5">{{medicineData.other_time_af}}</td>
-                        <td>{{medicineData.no_of_days}}</td>
-                        <td>{{medicineData.remarks}}</td>
-                      </tr>
-                     
-                    </tbody>
-                </table>
-            </div>
-            <div class="space-10"></div>
-            <div class="mat-card" *ngIf="patientData?.dialysis_notes">
-                <h5>Dialysis Notes</h5>
-                <table class="table table-bordered fs-medium">
-                    <thead class="thead-dark table-header-background">
                         <tr>
-                            <th>Dialysis Notes</th>
-                            <th>Prescription Date</th>
+                            <th rowspan="2">#</th>
+                            <th rowspan="2">Product Name</th>
+                            <th colspan="2">Morning</th>
+                            <th colspan="2">Noon</th>
+                            <th colspan="2">Evening</th>
+                            <th colspan="2">Night</th>
+                            <th colspan="3">Adhoc</th>
+                            <th rowspan="2">Days</th>
+                            <th rowspan="2">Remarks</th>
                         </tr>
+
+                        <tr>
+                            <th>BF</th>
+                            <th>AF</th>
+                            <th>BF</th>
+                            <th>AF</th>
+                            <th>BF</th>
+                            <th>AF</th>
+                            <th>BF</th>
+                            <th>AF</th>
+                            <th>Notes</th>
+                            <th>BF</th>
+                            <th>AF</th>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let dialysisData of patientData.dialysis_notes">
+                        <tr *ngFor="let medicineData of patientData.medicine_lastvisit; let i=index">
+                            <td scope="row">{{i+1}}</td>
                             <td>
-                                {{dialysisData.dialysis_notes}}
+                                {{medicineData.product_name}}
                             </td>
-                            <td>
-                                {{dialysisData.prescription_date | date: 'dd-MM-yyyy'}}
-                            </td>
+
+                            <td class="w-5">{{medicineData.morning_bf}}</td>
+                            <td class="w-5">{{medicineData.morning_af}}</td>
+
+                            <td class="w-5">{{medicineData.noon_bf}}</td>
+                            <td class="w-5">{{medicineData.noon_af}}</td>
+
+                            <td class="w-5">{{medicineData.evening_bf}}</td>
+                            <td class="w-5">{{medicineData.evening_af}}</td>
+
+                            <td class="w-5">{{medicineData.night_bf}}</td>
+                            <td class="w-5">{{medicineData.night_af}}</td>
+
+                            <td class="">{{medicineData.other_time_desc}}</td>
+                            <td class="w-5">{{medicineData.other_time_bf}}</td>
+                            <td class="w-5">{{medicineData.other_time_af}}</td>
+                            <td>{{medicineData.no_of_days}}</td>
+                            <td>{{medicineData.remarks}}</td>
                         </tr>
+
                     </tbody>
                 </table>
             </div>
+            <!-- <div class="space-10"></div>
+            <div class="mat-card" *ngIf="patientData?.biometry">
+                <h5>Biometry</h5>
+                <div *ngFor="let glassData of patientData.biometry">
+                    <div class="row margin-20l">
+                        <div class="col-md-12">
+                            <table class="table-bordered border txt-center w-100">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2"></th>
+                                        <th>OD</th>
+                                        <th>OS</th>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="2">KERATOMERY</th>
+                                        <th>K1</th>
+                                        <td>{{bioData.keratometry_k1_re}}</td>
+                                        <td>{{bioData.keratometry_k1_le}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>K2</th>
+                                        <td>{{bioData.keratometry_k2_re}}</td>
+                                        <td>{{bioData.keratometry_k2_le}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">AXIAL LENGTH</th>
+                                        <td>{{bioData.axial_length_re}}</td>
+                                        <td>{{bioData.axial_length_le}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2"> IOL POWER </th>
+                                        <td>
+                                            <table class="w-100">
+                                                <thead>
+                                                    <tr>
+                                                        <td>{{bioData.iolpower1_re}}</td>
+                                                        <td>{{bioData.iolpower1_re_rem}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>{{bioData.iolpower2_re}}</td>
+                                                        <td>{{bioData.iolpower2_re_rem}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>{{bioData.iolpower3_re}}</td>
+                                                        <td>{{bioData.iolpower3_re_rem}}</td>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table class="w-100">
+                                                <thead>
+                                                    <tr>
+                                                        <td>{{bioData.iolpower1_le}}</td>
+                                                        <td>{{bioData.iolpower1_le_rem}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>{{bioData.iolpower2_le}}</td>
+                                                        <td>{{bioData.iolpower2_le_rem}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>{{bioData.iolpower3_le}}</td>
+                                                        <td>{{bioData.iolpower3_le_rem}}</td>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
         </div>
-    <br>
-  </div>
+        <br>
+    </div>
 </div>
