@@ -172,7 +172,7 @@ export class PresentGlassPowerComponent {
 
   addRight() {
     //@ts-ignore
-    let getDetials = this.distanceList.filter(val => val.ref_code == this.presentGlassPowerForm.controls.sph_distance_re.value);
+    let getDetials = this.distanceList.filter(val => val.ref_desc == this.presentGlassPowerForm.controls.sph_distance_re.value);
 
     const getValue = +getDetials[0].ref_desc + +this.presentGlassPowerForm.controls.sph_add_re.value;
     this.presentGlassPowerForm.controls.sph_near_re.setValue(getValue);
@@ -182,7 +182,7 @@ export class PresentGlassPowerComponent {
 
   addLeft() {
     //@ts-ignore
-    let getDetials = this.distanceList.filter(val => val.ref_code == this.presentGlassPowerForm.controls.sph_distance_le.value);
+    let getDetials = this.distanceList.filter(val => val.ref_desc == this.presentGlassPowerForm.controls.sph_distance_le.value);
 
     const getValue = +getDetials[0].ref_desc + +this.presentGlassPowerForm.controls.sph_add_le.value;
     this.presentGlassPowerForm.controls.sph_near_le.setValue(getValue);

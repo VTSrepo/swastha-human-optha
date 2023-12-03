@@ -45,7 +45,7 @@
                                             <!-- <input type="text" class="form-control" formControlName="sph_distance_re"> -->
                                             <select type="dropdown" class="form-control" formControlName="sph_distance_re" required>
                                                 <option value="" selected disabled>-Select-</option>
-                                                <option *ngFor="let vaValue of distanceList" value="{{vaValue.ref_code}}">{{vaValue.ref_desc}}</option>
+                                                <option *ngFor="let vaValue of distanceList" value="{{vaValue.ref_desc}}">{{vaValue.ref_desc}}</option>
                                             </select>
                                         </td>
                                         <td><input type="text" class="form-control" formControlName="cyl_distance_re"></td>
@@ -90,7 +90,7 @@
                                         <!-- <input type="text" class="form-control" formControlName="sph_distance_le"> -->
                                         <select type="dropdown" class="form-control" formControlName="sph_distance_le" required>
                                             <option value="" selected disabled>-Select-</option>
-                                            <option *ngFor="let vaValue of distanceList" value="{{vaValue.ref_code}}">{{vaValue.ref_desc}}</option>
+                                            <option *ngFor="let vaValue of distanceList" value="{{vaValue.ref_desc}}">{{vaValue.ref_desc}}</option>
                                         </select>
                                     </td>
                                     <td><input type="text" class="form-control" formControlName="cyl_distance_le"></td>
@@ -121,7 +121,7 @@
             <div class="col-md-6">
                 <select type="text"  class="form-control margin-10t" formControlName="lens_material" required>
                     <option value="" selected disabled>-Select-</option>
-                    <option *ngFor="let lens of lensMaterialList" value="{{lens.ref_code}}">{{lens.ref_desc}}</option>
+                    <option *ngFor="let lens of lensMaterialList" value="{{lens.ref_desc}}">{{lens.ref_desc}}</option>
                 </select>
             </div>
         </div>
@@ -132,7 +132,7 @@
             <div class="col-md-6">
                 <select type="text"  class="form-control margin-10t" formControlName="lens_type" required>
                     <option value="" selected disabled>-Select-</option>
-                    <option *ngFor="let lensType of typeOfLensList" value="{{lensType.ref_code}}">{{lensType.ref_desc}}</option>
+                    <option *ngFor="let lensType of typeOfLensList" value="{{lensType.ref_desc}}">{{lensType.ref_desc}}</option>
                 </select>
             </div>
         </div>
@@ -143,7 +143,7 @@
             <div class="col-md-6">
                 <select type="text"  class="form-control margin-10t" formControlName="lens_coating" required>
                     <option value="" selected disabled>-Select-</option>
-                    <option *ngFor="let coating of coatingList" value="{{coating.ref_code}}">{{coating.ref_desc}}</option>
+                    <option *ngFor="let coating of coatingList" value="{{coating.ref_desc}}">{{coating.ref_desc}}</option>
                 </select>
             </div>
         </div>

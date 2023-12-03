@@ -87,7 +87,7 @@ export class VisualAcuityComponent {
         width: '400px',
         data: 'Visual Acuity Saved Successfully!!!'
       })
-      this.addRecord();
+      // this.addRecord();
     })
   }
 
