@@ -196,22 +196,22 @@
                                 <tr>
                                     <th>Aided</th>
                                     <td>{{visualData.unaided_distance_re}}</td>
-                                    <td>{{visualData.aided_near_ree}}</td>
-                                    <td>{{visualData.aided_distance_lee}}</td>
-                                    <td>{{visualData.aided_near_lee}}</td>
+                                    <td>{{visualData.aided_near_re}}</td>
+                                    <td>{{visualData.aided_distance_le}}</td>
+                                    <td>{{visualData.aided_near_le}}</td>
                                 </tr>
                                 <tr>
                                     <th>Pinhole</th>
-                                    <td>{{visualData.pinhole_distance_ree}}</td>
+                                    <td>{{visualData.pinhole_distance_re}}</td>
                                     <td></td>
-                                    <td>{{visualData.pinhole_distance_lee}}</td>
+                                    <td>{{visualData.pinhole_distance_le}}</td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <th>Color Vision</th>
-                                    <td>{{visualData.color_vision_distance_ree}}</td>
+                                    <td>{{visualData.color_vision_distance_re}}</td>
                                     <td></td>
-                                    <td>{{visualData.color_vision_distance_lee}}</td>
+                                    <td>{{visualData.color_vision_distance_le}}</td>
                                     <td></td>
                                 </tr>
                             </tbody>
@@ -739,8 +739,8 @@
                             <label>Follow-up</label>
                         </div>
                         <div class="col-md-9 margin-t display-flex">
-                            <div class="col-md-3">{{diagnosisData.followup_date}}</div>
-                            <div class="col-md-9">{{diagnosisData.followup_date}}</div>
+                            <div class="col-md-3">{{diagnosisData.followup_date | date:'dd-MM-yyyy'}}</div>
+                            <div class="col-md-9">{{diagnosisData.followup_reason}}</div>
                         </div>
                     </div>
                 </div>

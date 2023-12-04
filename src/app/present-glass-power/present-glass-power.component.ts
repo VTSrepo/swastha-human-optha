@@ -41,13 +41,13 @@ export class PresentGlassPowerComponent {
     this.ref.getPaymentModes('SPH').subscribe(data => {
       this.distanceList = data.results;
     })
-    this.ref.getPaymentModes('PGP1').subscribe(data => {
+    this.ref.getPaymentModes('LENSMAT').subscribe(data => {
       this.lensMaterialList = data.results;
     })
-    this.ref.getPaymentModes('PGP2').subscribe(data => {
+    this.ref.getPaymentModes('LENSTYPE').subscribe(data => {
       this.typeOfLensList = data.results;
     })
-    this.ref.getPaymentModes('PGP3').subscribe(data => {
+    this.ref.getPaymentModes('LENSCOAT').subscribe(data => {
       this.coatingList = data.results;
     })
   }
