@@ -66,7 +66,7 @@ export class IntraOcularPressureComponent {
           data: 'Intra Ocular Pressure Saved Successfully!!!'
         })
       })
-      this.iopList.length = 0
+      // this.iopList.length = 0
     }
   
     getIopDetail() {

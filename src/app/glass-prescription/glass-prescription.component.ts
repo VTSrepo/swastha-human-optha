@@ -183,7 +183,7 @@ export class GlassPrescriptionComponent {
 
     addRight() {
       //@ts-ignore
-      let getDetials = this.distanceList.filter(val => val.ref_code == this.glassPrescriptionForm.controls.sph_distance_re.value);
+      let getDetials = this.distanceList.filter(val => val.ref_desc == this.glassPrescriptionForm.controls.sph_distance_re.value);
   
       const getValue = +getDetials[0].ref_desc + +this.glassPrescriptionForm.controls.sph_add_re.value;
       this.glassPrescriptionForm.controls.sph_near_re.setValue(getValue);
@@ -194,7 +194,7 @@ export class GlassPrescriptionComponent {
   
     addLeft() {
       //@ts-ignore
-      let getDetials = this.distanceList.filter(val => val.ref_code == this.glassPrescriptionForm.controls.sph_distance_le.value);
+      let getDetials = this.distanceList.filter(val => val.ref_desc == this.glassPrescriptionForm.controls.sph_distance_le.value);
   
       const getValue = +getDetials[0].ref_desc + +this.glassPrescriptionForm.controls.sph_add_le.value;
       this.glassPrescriptionForm.controls.sph_near_le.setValue(getValue);
@@ -212,6 +212,7 @@ export class GlassPrescriptionComponent {
       this.glassPrescriptionForm.controls.cyl_near_le.setValue(this.glassPrescriptionForm.controls.cyl_near_re.value);
       this.glassPrescriptionForm.controls.axis_near_le.setValue(this.glassPrescriptionForm.controls.axis_near_re.value);
       this.glassPrescriptionForm.controls.va_near_le.setValue(this.glassPrescriptionForm.controls.va_near_re.value);
+      this.glassPrescriptionForm.controls.sph_add_le.setValue(this.glassPrescriptionForm.controls.sph_add_re.value);
     }
 
     leftToRight() {
@@ -223,6 +224,7 @@ export class GlassPrescriptionComponent {
       this.glassPrescriptionForm.controls.cyl_near_re.setValue(this.glassPrescriptionForm.controls.cyl_near_le.value);
       this.glassPrescriptionForm.controls.axis_near_re.setValue(this.glassPrescriptionForm.controls.axis_near_le.value);
       this.glassPrescriptionForm.controls.va_near_re.setValue(this.glassPrescriptionForm.controls.va_near_le.value);
+      this.glassPrescriptionForm.controls.sph_add_re.setValue(this.glassPrescriptionForm.controls.sph_add_le.value);
     }
 
     emitGP() {

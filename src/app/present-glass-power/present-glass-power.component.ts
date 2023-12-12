@@ -41,13 +41,13 @@ export class PresentGlassPowerComponent {
     this.ref.getPaymentModes('SPH').subscribe(data => {
       this.distanceList = data.results;
     })
-    this.ref.getPaymentModes('PGP1').subscribe(data => {
+    this.ref.getPaymentModes('LENSMAT').subscribe(data => {
       this.lensMaterialList = data.results;
     })
-    this.ref.getPaymentModes('PGP2').subscribe(data => {
+    this.ref.getPaymentModes('LENSTYPE').subscribe(data => {
       this.typeOfLensList = data.results;
     })
-    this.ref.getPaymentModes('PGP3').subscribe(data => {
+    this.ref.getPaymentModes('LENSCOAT').subscribe(data => {
       this.coatingList = data.results;
     })
   }
@@ -170,7 +170,7 @@ export class PresentGlassPowerComponent {
 
   addRight() {
     //@ts-ignore
-    let getDetials = this.distanceList.filter(val => val.ref_code == this.presentGlassPowerForm.controls.sph_distance_re.value);
+    let getDetials = this.distanceList.filter(val => val.ref_desc == this.presentGlassPowerForm.controls.sph_distance_re.value);
 
     const getValue = +getDetials[0].ref_desc + +this.presentGlassPowerForm.controls.sph_add_re.value;
     this.presentGlassPowerForm.controls.sph_near_re.setValue(getValue);
@@ -180,7 +180,7 @@ export class PresentGlassPowerComponent {
 
   addLeft() {
     //@ts-ignore
-    let getDetials = this.distanceList.filter(val => val.ref_code == this.presentGlassPowerForm.controls.sph_distance_le.value);
+    let getDetials = this.distanceList.filter(val => val.ref_desc == this.presentGlassPowerForm.controls.sph_distance_le.value);
 
     const getValue = +getDetials[0].ref_desc + +this.presentGlassPowerForm.controls.sph_add_le.value;
     this.presentGlassPowerForm.controls.sph_near_le.setValue(getValue);
@@ -195,6 +195,7 @@ export class PresentGlassPowerComponent {
     this.presentGlassPowerForm.controls.sph_near_le.setValue(this.presentGlassPowerForm.controls.sph_near_re.value);
     this.presentGlassPowerForm.controls.cyl_near_le.setValue(this.presentGlassPowerForm.controls.cyl_near_re.value);
     this.presentGlassPowerForm.controls.axis_near_le.setValue(this.presentGlassPowerForm.controls.axis_near_re.value);
+    this.presentGlassPowerForm.controls.sph_add_le.setValue(this.presentGlassPowerForm.controls.sph_add_re.value);
   }
 
   leftToRight() {
@@ -204,6 +205,7 @@ export class PresentGlassPowerComponent {
     this.presentGlassPowerForm.controls.sph_near_re.setValue(this.presentGlassPowerForm.controls.sph_near_le.value);
     this.presentGlassPowerForm.controls.cyl_near_re.setValue(this.presentGlassPowerForm.controls.cyl_near_le.value);
     this.presentGlassPowerForm.controls.axis_near_re.setValue(this.presentGlassPowerForm.controls.axis_near_le.value);
+    this.presentGlassPowerForm.controls.sph_add_re.setValue(this.presentGlassPowerForm.controls.sph_add_le.value);
   }
 
   emitPGP() {
