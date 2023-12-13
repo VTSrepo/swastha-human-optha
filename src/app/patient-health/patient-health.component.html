@@ -468,10 +468,10 @@
                     </tbody>
                 </table>
             </div>
-            <!-- <div class="space-10"></div>
-                <div class="mat-card" *ngIf="patientData?.biometry">
+            <div class="space-10"></div>
+                <div class="mat-card" *ngIf="patientData?.opthol_biometry">
                     <h5>Biometry</h5>
-                    <div *ngFor="let glassData of patientData.biometry">
+                    <div *ngFor="let bioData of patientData.opthol_biometry">
                         <div class="row margin-20l">
                             <div class="col-md-12">
                                 <table class="table-bordered border txt-center w-100">
@@ -500,7 +500,7 @@
                                         <tr>
                                             <th colspan="2"> IOL POWER </th>
                                             <td>
-                                                <table class="w-100">
+                                                <table class="table-bordered border txt-center w-100">
                                                     <thead>
                                                         <tr>
                                                             <td>{{bioData.iolpower1_re}}</td>
@@ -518,7 +518,7 @@
                                                 </table>
                                             </td>
                                             <td>
-                                                <table class="w-100">
+                                                <table class="table-bordered border txt-center w-100">
                                                     <thead>
                                                         <tr>
                                                             <td>{{bioData.iolpower1_le}}</td>
@@ -541,7 +541,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
 
             <br>
         </div>
