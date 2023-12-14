@@ -165,6 +165,10 @@ export class GlassPrescriptionComponent {
     setCurrentNotesAfterChange() {
       this.recordIndex = this.getLastRecordIndex() - this.prevCounter;
       this.glassPrescriptionForm.patchValue(this.subjectDetailData[this.recordIndex]);
+      this.showVisitNo = this.subjectDetailData[this.recordIndex].visit_no;
+      this.showVisitDate = this.utility.convertDate(
+        this.subjectDetailData[this.recordIndex].visit_date
+      );
     }
   
     displayPrevious() {

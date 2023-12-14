@@ -152,6 +152,10 @@ export class PresentGlassPowerComponent {
   setCurrentNotesAfterChange() {
     this.recordIndex = this.getLastRecordIndex() - this.prevCounter;
     this.presentGlassPowerForm.patchValue(this.pgpDetailData[this.recordIndex]);
+    this.showVisitNo = this.pgpDetailData[this.recordIndex].visit_no;
+    this.showVisitDate = this.utility.convertDate(
+      this.pgpDetailData[this.recordIndex].visit_date
+    );
   }
 
   displayPrevious() {

@@ -120,6 +120,10 @@ export class DiagnosisAndAdviceComponent {
     setCurrentNotesAfterChange() {
       this.recordIndex = this.getLastRecordIndex() - this.prevCounter;
       this.diagnosisForm.patchValue(this.subjectDetailData[this.recordIndex]);
+      this.showVisitNo = this.subjectDetailData[this.recordIndex].visit_no;
+      this.showVisitDate = this.utils.convertDate(
+        this.subjectDetailData[this.recordIndex].visit_date
+      );
     }
   
     displayPrevious() {

@@ -139,6 +139,10 @@ export class BiometryComponent {
   setCurrentNotesAfterChange() {
     this.recordIndex = this.getLastRecordIndex() - this.prevCounter;
     this.biometricForm.patchValue(this.biometryDetailData[this.recordIndex]);
+    this.showVisitNo = this.biometryDetailData[this.recordIndex].visit_no;
+    this.showVisitDate = this.utility.convertDate(
+      this.biometryDetailData[this.recordIndex].visit_date
+    );
   }
 
   displayPrevious() {

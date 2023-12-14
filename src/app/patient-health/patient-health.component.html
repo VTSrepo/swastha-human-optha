@@ -295,8 +295,8 @@
                             <label>Follow-up</label>
                         </div>
                         <div class="col-md-9 margin-t display-flex">
-                            <div class="col-md-3">{{diagnosisData.followup_date}}</div>
-                            <div class="col-md-9">{{diagnosisData.followup_date}}</div>
+                            <div class="col-md-3">{{diagnosisData.followup_date | date:'dd-MM-yyyy'}}</div>
+                            <div class="col-md-9">{{diagnosisData.followup_reason}}</div>
                         </div>
                     </div>
                 </div>
